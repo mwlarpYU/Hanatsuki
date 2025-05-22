@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>花月酒店謀殺案</title>
+
+  <!-- AOS CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #261E47;
+      --text-color-main: #F7C242;
+      --text-color-secondary: #ffffff;
+      --font-family: 'Noto Sans TC', sans-serif;
+      --text-scale: 1.2; /* 放大20% */
+    }
+
+    html {
+      font-size: calc(16px * var(--text-scale));
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      background-color: var(--bg-color);
+      color: var(--text-color-secondary);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--text-color-main);
+      text-decoration: none;
+    }
+
+    header.fullscreen-banner {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      background: url('https://i.ibb.co/m5pZzwyh/poster.png') center/cover no-repeat;
+      z-index: 999;
+      opacity: 1;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    header.fullscreen-banner.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .fullscreen-banner {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 999;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.fullscreen-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('https://i.ibb.co/m5pZzwyh/poster.png') center/cover no-repeat;
+  filter: blur(20px);
+  transform: scale(1.1);
+  z-index: 0;
+}
+
+.fullscreen-banner .blur-bg {
+  position: absolute;
+  inset: 0;
+  background: url('https://i.ibb.co/m5pZzwyh/poster.png') center/contain no-repeat;
+  background-size: contain;
+  background-position: center;
+  z-index: 1;
+}
+
+
+    .hero-text {
+      position: relative;
+      padding: 2rem;
+      text-align: center;
+      z-index: 1;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+      background: url('https://i.ibb.co/H1VjJ31/BG-3.png') center/cover no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+      color: var(--text-color-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-text h2 {
+      font-size: 1.25rem;
+      color: var(--text-color-secondary);
+      margin-top: 0;
+    }
+
+    .section {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 3rem 1rem;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .section:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .section img {
+      width: 100%;
+      max-width: 400px;
+      flex: 1 1 400px;
+      border-radius: 8px;
+    }
+
+    .section .text {
+      max-width: 400px;
+      flex: 1 1 400px;
+    }
+
+    .section h3 {
+      color: var(--text-color-main);
+      margin-bottom: 1rem;
+    }
+
+    .section .text h3 {
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .feature-box {
+      border: 1px solid var(--text-color-main);
+      padding: 1rem;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .feature-box h4 {
+      color: var(--text-color-main);
+    }
+
+    .faq {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+    }
+
+    .faq-text h3 {
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+
+    .faq-item h4 {
+      cursor: pointer;
+      color: var(--text-color-main);
+    }
+
+    .faq-item p {
+      display: none;
+      margin-top: 0.5rem;
+    }
+
+    .mid {
+      text-align: center;
+      padding: 2rem;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
+      color: var(--text-color-secondary);
+      background: url('https://i.ibb.co/LzW6ng3x/BG-2.png') center/cover no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-color-secondary);
+      background: url('https://i.ibb.co/XZpGS0sL/BG-1.png') center/cover no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .footer-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #F7C242;
+      color: #261E47;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .footer-btn:hover {
+      background-color: #e0aa2e;
+      transform: scale(1.05);
+    }
+
+
+    @media (max-width: 768px) {
+      html {
+        font-size: calc(14px * var(--text-scale));
+      }
+
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .hero-text h2 {
+        font-size: 1rem;
+      }
+
+      .section {
+        flex-direction: column !important;
+      }
+
+      .section img,
+      .section .text {
+        max-width: 100% !important;
+        flex: unset;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Splash Banner -->
+<header class="fullscreen-banner" id="splash">
+  <div class="blur-bg"></div>
+</header>
+
+
+  <!-- Hero Section -->
+  <section class="hero-text" data-aos="fade-up">
+    <img src="https://i.ibb.co/PZqYBGxJ/HT-logo.png" style="width:10vh" alt="LOGO" />
+    <h1>花月酒店謀殺案</h1>
+    <h2>【期間限定，6/27-6/28快閃活動】</h2>
+    <p>
+      「いらっしゃいませ！」<br>
+      置身在燈紅酒綠之中，<br>
+      任由愛恨情仇催化釀酒。<br>
+      「乾杯！」
+    </p>
+  </section>
+
+  <!-- 活動介紹區塊們 -->
+  <section class="section" data-aos="fade-up">
+    <img src="https://i.ibb.co/chjqpdDs/MAIN.png" alt="花月酒店" />
+    <div class="text">
+      <h3>花月酒店</h3>
+      <p>
+        花月，一間座落於七條通的日式酒店，來到這裡的客人除了來喝酒之外，更是來享受那一份不明說的曖昧。<br>
+        然而，在這紙醉金迷之中，一道慘叫聲打破了這令人陶醉的氛圍——<br>
+        花月的媽媽桑，被人發現死在了花月的後巷！<br>
+        <b style="color:#F05E1C">兇手究竟會是誰？</b>
+      </p>
+    </div>
+  </section>
+
+  <section class="section" data-aos="fade-up">
+    <img src="https://i.ibb.co/bMpQTj70/HT-F1.png" alt="大型實境推理" />
+    <div class="text">
+      <h3>大型實境推理</h3>
+      <p>
+        「我記得她跟媽媽桑鬧得很不愉快……」<br>
+        「兇手應該是他吧，畢竟之前發生了那種事……」<br>
+        「她會有今天這個下場我一點都不意外。」<br>
+         <b style="color:#F05E1C">&nbsp;和同場演員一起痛快飆戲！</b>
+      </p>
+    </div>
+  </section>
+
+  <section class="mid" data-aos="fade-up">
+    <h3>整條街上議論紛紛，<br>你們決定往花月的大門口走去。</h3>
+    <h3>但目的並不是消費，<br>而是調查整起殺人事件背後的真相……</h3>
+  </section>
+  
+  <section class="features" data-aos="fade-up">
+    <div class="feature-box">
+      <h4>◆ 專屬時段、封館互動</h4>
+      <p>105分鐘驚喜不斷，讓每位來酒店的貴賓一起深入體驗遊戲，創造不同的回憶。</p>
+    </div>
+    <div class="feature-box">
+      <h4>◆ 特殊劇目演出</h4>
+      <p>追加特殊劇情，滿足對花月日式酒店的各種想像。更讓您身歷其境，CP嗑好嗑滿。</p>
+    </div>
+    <div class="feature-box">
+      <h4>◆ 限定版紀念小禮物</h4>
+      <p>當天有來酒店消費的貴賓，都會獲得花月專屬紀念精美小禮物。</p>
+    </div>
+    <div class="feature-box">
+      <h4>◆ 花月特調&無酒精威士忌暢飲</h4>
+      <p>每位來酒店的貴賓都會擁有一杯當日限定的花月特調，現場也會提供無酒精威士忌(麥茶)，歡迎盡情享受這美好的一晚。</p>
+    </div>
+  </section>
+
+  <section class="section" data-aos="fade-up">
+    <img src="https://i.ibb.co/N2SWpkmm/HT-M.png" alt="活動資訊" />
+    <div class="text">
+      <h3>📣活動資訊</h3>
+      <p>
+        <strong>遊戲時長：</strong>105 分鐘（含報到及遊戲時間）<br>
+        <strong>玩家人數：</strong>1 - 6 人 / 組<br>
+        <strong>適合年齡：</strong>16歲以上（13-15歲需家長陪同，不開放12歲以下）
+      </p>
+    </div>
+  </section>
+
+  <section class="section" data-aos="fade-up">
+    <img src="https://i.ibb.co/fmPnXSC/HT-F2.png" alt="售票資訊" />
+    <div class="text">
+      <h3>📣售票資訊</h3>
+      <p>
+        <strong>場次時間：</strong><br>
+        2025/6/27 (五) 19:00、20:45<br>
+        2025/6/28 (六) 13:00、14:45、16:30<br><br>
+        <strong>遊戲費用：</strong><br>
+        5人團體票 2,600元（未滿5人也可以）<br>
+        6人團體票 3,000元
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" data-aos="fade-up">
+    <h3>常見問題 FAQ</h3>
+    <div class="faq-item">
+      <h4><b>+</b> Q1:遊戲要怎麼玩呢？</h4>
+      <p>&emsp;A:行前會收到遊戲說明影片，現場領取解謎包並與演員互動取得線索推理真相。</p>
+    </div>
+    <div class="faq-item">
+      <h4><b>+</b> Q2:遊戲會有服裝可以更換嗎？</h4>
+      <p>&emsp;A:無提供換裝，但建議穿著復古風服飾（80年代旗袍、西裝等）。</p>
+    </div>
+    <div class="faq-item">
+      <h4><b>+</b> Q3:是否會有肢體接觸？</h4>
+      <p>&emsp;A:不會刻意觸碰玩家，請勿攻擊或觸碰演員，否則中止體驗且不退款。</p>
+    </div>
+  </section>
+
+  <p>&emsp;</p>
+
+  <footer data-aos="fade-up">
+    <div style="text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);">
+    <h2>乾杯！敲響花月酒店的大門！</h2>
+    <h3>いらっしゃいませ！</h3>
+    </div>
+    <a href="https://larpwesley.simplybook.asia/v2/#book/location/8/count/1/provider/any/" target="_blank" class="footer-btn">立即預約</a>
+
+  </footer>
+
+  <!-- AOS JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init();
+
+    // Splash banner fade out
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+        const splash = document.getElementById('splash');
+        splash.classList.add('fade-out');
+        setTimeout(() => {
+          splash.style.display = 'none';
+        }, 1000);
+      }, 500);
+    });
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-item h4').forEach((question) => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+  </script>
+</body>
+</html>
