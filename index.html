@@ -5,28 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>花月酒店謀殺案</title>
 
-  <!-- AOS CSS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
-
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+  
+  <!-- 預載入關鍵圖片 -->
+  <link rel="preload" as="image" href="https://i.ibb.co/LdmJgdgc/WEB-BG2.webp" />
+  <link rel="preload" as="image" href="https://i.ibb.co/0ptbMj5s/HT-logo.webp" />
+  <link rel="preload" as="image" href="https://i.ibb.co/4w8FWxL9/MAIN.webp" />
+  
   <style>
     :root {
       --bg-color: #261E47;
       --text-color-main: #F7C242;
       --text-color-secondary: #ffffff;
-      --font-family: 'Noto Sans TC', sans-serif;
-      --text-scale: 1.2; /* 放大20% */
+      --font-family: 'Noto Sans TC', serif;
+      --font-weight: 500;
+      --text-scale: 1.2;
+      --nav-height: 60px; /* For potential body padding if nav was a solid bar */
     }
 
     html {
       font-size: calc(16px * var(--text-scale));
+      scroll-behavior: smooth; /* For smooth scrolling */
+    }
+
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+    }
+    
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('https://i.ibb.co/LdmJgdgc/WEB-BG2.webp');
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+      background-position: top center;
+      background-attachment: scroll;
+      z-index: -1;
     }
 
     body {
       margin: 0;
       font-family: var(--font-family);
-      background-color: var(--bg-color);
       color: var(--text-color-secondary);
       overflow-x: hidden;
+      position: relative;
+      background-color: #050d1a;
+      min-height: 100vh;
+      /* padding-top: var(--nav-height); If nav was a solid bar */
     }
 
     a {
@@ -34,65 +65,128 @@
       text-decoration: none;
     }
 
-    header.fullscreen-banner {
+    /* Table of Contents Navigation */
+    .toc-nav {
       position: fixed;
-      width: 100%;
-      height: 100vh;
-      background: url('https://i.ibb.co/m5pZzwyh/poster.png') center/cover no-repeat;
-      z-index: 999;
-      opacity: 1;
-      transition: opacity 1.5s ease-in-out;
+      top: 15px;
+      right: 15px;
+      z-index: 1001; /* Above floating button */
     }
 
-    header.fullscreen-banner.fade-out {
+    .toc-toggle {
+      background-color: rgba(247, 194, 66, 0.85); /* Main yellow, slightly transparent */
+      color: var(--bg-color);
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .toc-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: var(--bg-color);
+      border-radius: 1px;
+      transition: all 0.3s ease;
+    }
+    .toc-toggle.active span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .toc-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .toc-toggle.active span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+
+    .toc-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      position: absolute;
+      top: 55px; /* Below button */
+      right: 0;
+      background-color: rgba(38, 30, 71, 0.95); /* Dark BG, slightly transparent */
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      width: 180px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    .toc-menu.active {
+      max-height: 500px; /* Adjust as needed for content */
+      padding: 10px 0;
+    }
+    .toc-menu li a {
+      display: block;
+      padding: 10px 20px;
+      color: var(--text-color-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .toc-menu li a:hover {
+      background-color: var(--text-color-main);
+      color: var(--bg-color);
+    }
+
+
+    .floating-btn {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: 70px;
+      height: 70px;
+      background-color: #F7C242;
+      color: #261E47;
+      font-weight: bold;
+      font-size: 0.8rem;
+      border-radius: 50%; 
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      text-decoration: none;
+      transition: opacity 0.3s ease, transform 0.2s ease, background-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1.25; 
+      padding: 5px; 
+    }
+    
+    .floating-btn:hover {
+      background-color: #e0aa2e;
+      transform: scale(1.05);
+    }
+    
+    .floating-btn.hidden {
       opacity: 0;
       pointer-events: none;
     }
-
-    .fullscreen-banner {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  z-index: 999;
-  transition: opacity 1.5s ease-in-out;
-}
-
-.fullscreen-banner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('https://i.ibb.co/m5pZzwyh/poster.png') center/cover no-repeat;
-  filter: blur(20px);
-  transform: scale(1.1);
-  z-index: 0;
-}
-
-.fullscreen-banner .blur-bg {
-  position: absolute;
-  inset: 0;
-  background: url('https://i.ibb.co/m5pZzwyh/poster.png') center/contain no-repeat;
-  background-size: contain;
-  background-position: center;
-  z-index: 1;
-}
-
 
     .hero-text {
       position: relative;
       padding: 2rem;
       text-align: center;
-      z-index: 1;
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-      background: url('https://i.ibb.co/H1VjJ31/BG-3.png') center/cover no-repeat;
-      background-size: cover;
-      background-position: center;
+      /* margin-top: var(--nav-height); If body had padding-top */
     }
 
     .hero-text h1 {
+      font-family: 'Noto Serif TC', serif;
       font-size: 2.5rem;
       color: var(--text-color-main);
       margin-bottom: 0.5rem;
+      font-weight: 800;
     }
 
     .hero-text h2 {
@@ -108,6 +202,7 @@
       align-items: center;
       justify-content: center;
       gap: 2rem;
+      scroll-margin-top: 20px; /* Offset for fixed nav */
     }
 
     .section:nth-child(even) {
@@ -119,6 +214,13 @@
       max-width: 400px;
       flex: 1 1 400px;
       border-radius: 8px;
+      loading: lazy;
+      object-fit: cover;
+      transition: opacity 0.3s ease;
+    }
+
+    .section img:not([src]) {
+      opacity: 0;
     }
 
     .section .text {
@@ -126,21 +228,21 @@
       flex: 1 1 400px;
     }
 
-    .section h3 {
+    .section > h3, 
+    .section .text h3 { 
       color: var(--text-color-main);
       margin-bottom: 1rem;
-    }
-
-    .section .text h3 {
       font-size: 1.8rem;
       text-align: center;
     }
+
 
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
       padding: 2rem;
+      scroll-margin-top: 20px; /* Offset for fixed nav */
     }
 
     .feature-box {
@@ -154,48 +256,139 @@
       color: var(--text-color-main);
     }
 
-    .faq {
+    .faq-section { 
       padding: 2rem;
       max-width: 800px;
-      margin: 0 auto;
+      margin: 0 auto 2rem auto; 
       background-color: rgba(0, 0, 0, 0.4);
       border-radius: 10px;
+      scroll-margin-top: 20px; /* Offset for fixed nav */
     }
 
-    .faq-text h3 {
+    .faq-section .faq-main-title { 
       font-size: 1.8rem;
       text-align: center;
+      color: var(--text-color-main);
+      cursor: pointer;
+      margin-bottom: 1.5rem; 
     }
+     .faq-section .faq-main-title .arrow {
+        display: inline-block;
+        margin-right: 0.3em;
+        transition: transform 0.3s ease;
+     }
+     .faq-section .faq-main-title.open .arrow {
+        transform: rotate(180deg);
+     }
 
+
+    .faq-list-container {
+      display: none; 
+    }
+    
     .faq-item {
       margin-bottom: 1rem;
     }
 
-    .faq-item h4 {
+    .faq-item h4 { 
       cursor: pointer;
       color: var(--text-color-main);
+      display: flex; 
+      align-items: center;
+    }
+    .faq-item h4 .arrow {
+        display: inline-block;
+        margin-right: 0.3em;
+        transition: transform 0.3s ease;
+    }
+    .faq-item h4.open .arrow {
+        transform: rotate(180deg);
     }
 
-    .faq-item p {
+    .faq-item p { 
       display: none;
       margin-top: 0.5rem;
+      padding-left: 1.5em; 
     }
+
+    .notice-title {
+      text-align: center;
+      font-size: 1.5rem; 
+      color:#F05E1C;
+      cursor: pointer;
+    }
+     .notice-title .arrow {
+        display: inline-block;
+        margin-right: 0.3em;
+        transition: transform 0.3s ease;
+     }
+     .notice-title.open .arrow {
+        transform: rotate(180deg);
+     }
+    .notice-content {
+      display: none; 
+      margin-top: 1rem;
+    }
+
 
     .mid {
       text-align: center;
       padding: 2rem;
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
       color: var(--text-color-secondary);
-      background: url('https://i.ibb.co/LzW6ng3x/BG-2.png') center/cover no-repeat;
+      background: url('https://i.ibb.co/nN9PFfwn/BG-2.webp') center/cover no-repeat;
       background-size: cover;
       background-position: center;
+      scroll-margin-top: 20px; /* Offset for fixed nav */
     }
-    
+    .mid h3 { 
+        color: var(--text-color-secondary);
+    }
+
+    .organizer-info {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-color-secondary);
+      margin-bottom: 0;
+      scroll-margin-top: 20px; /* Offset for fixed nav */
+    }
+    .organizer-info .organizer-label {
+      font-size: 1.0rem; 
+      color: var(--text-color-secondary); 
+      margin-bottom: 0.5rem;
+      font-weight: normal;
+    }
+    .organizer-info h3 { 
+      color: var(--text-color-main); 
+      font-size: 1.6rem; 
+      margin-top: 0; 
+      margin-bottom: 1.5rem; 
+      font-weight: bold;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem; /* Reduced gap for image icons */
+    }
+    .social-links a {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+    .social-links a:hover {
+      transform: scale(1.1); /* Simple hover for images */
+    }
+    .social-links img { /* Style for new image icons */
+      width: 32px; 
+      height: 32px;
+      object-fit: contain;
+    }
+
     footer {
       text-align: center;
       padding: 2rem;
       color: var(--text-color-secondary);
-      background: url('https://i.ibb.co/XZpGS0sL/BG-1.png') center/cover no-repeat;
+      background: url('https://i.ibb.co/9k4M0HbC/BG-1.webp') center/cover no-repeat;
       background-size: cover;
       background-position: center;
     }
@@ -213,17 +406,52 @@
       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
       transition: background-color 0.3s ease, transform 0.2s ease;
     }
+
     .footer-btn:hover {
       background-color: #e0aa2e;
       transform: scale(1.05);
     }
 
+    /* 平板橫向優化 */
+    @media screen and (min-device-width: 768px) and (max-device-width: 1034px) and (orientation: landscape) {
+      .floating-btn {
+        bottom: 120px; 
+        right: 24px; 
+      }
+    }
 
+    /* 手機版優化 */
     @media (max-width: 768px) {
       html {
         font-size: calc(14px * var(--text-scale));
       }
+      .toc-toggle {
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+      }
+      .toc-toggle span {
+        width: 18px;
+        height: 2px;
+      }
+      .toc-menu {
+        top: 50px;
+        width: 160px;
+      }
+      .toc-menu li a {
+        font-size: 0.85rem;
+        padding: 8px 15px;
+      }
 
+
+      .floating-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 0.7rem; 
+        bottom: 120px; 
+        right: 15px; 
+      }
+      
       .hero-text h1 {
         font-size: 2rem;
       }
@@ -231,9 +459,14 @@
       .hero-text h2 {
         font-size: 1rem;
       }
+      
+      footer h2 {
+        font-size: 1.3rem;
+      } 
 
       .section {
         flex-direction: column !important;
+        padding: 2rem 1rem;
       }
 
       .section img,
@@ -241,43 +474,103 @@
         max-width: 100% !important;
         flex: unset;
       }
+      .organizer-info .organizer-label {
+        font-size: 0.9rem;
+      }
+      .organizer-info h3 {
+        font-size: 1.4rem;
+      }
+      .social-links img {
+        width: 28px; 
+        height: 28px;
+      }
+      .faq-section .faq-main-title {
+        font-size: 1.6rem;
+      }
+      .notice-title {
+        font-size: 1.3rem;
+      }
+    }
+
+    /* 超小螢幕優化 */
+    @media (max-width: 480px) {
+      .floating-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 0.65rem; 
+        bottom: 100px; 
+        right: 10px; 
+      }
+       .social-links img {
+        width: 24px; 
+        height: 24px;
+      }
+      .social-links {
+        gap: 1rem;
+      }
+      .toc-nav {
+        top: 10px;
+        right: 10px;
+      }
+    }
+
+    /* iPhone Safari 底部工具列優化 */
+    @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+      .floating-btn {
+        bottom: 140px; 
+      }
+    }
+
+    /* 圖片載入動畫 */
+    .loading-placeholder {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+    }
+
+    @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
     }
   </style>
 </head>
 <body>
-  <!-- YouTube BGM -->
-  <iframe
-    width="0"
-    height="0"
-    src="https://www.youtube.com/embed/kaXHh3ReX6s?autoplay=1&loop=1&playlist=kaXHh3ReX6s&mute=0&controls=0"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen
-    style="display: none;">
-  </iframe>
-  
-  <!-- Splash Banner -->
-<header class="fullscreen-banner" id="splash">
-  <div class="blur-bg"></div>
-</header>
 
+  <!-- Table of Contents Navigation -->
+  <nav class="toc-nav" id="tocNav">
+    <button class="toc-toggle" aria-label="目錄" aria-expanded="false" aria-controls="tocMenuList">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="toc-menu" id="tocMenuList">
+      <li><a href="#hero">首頁</a></li>
+      <li><a href="#story-intro">故事背景</a></li>
+      <li><a href="#features-section">遊戲特色</a></li>
+      <li><a href="#activity-info">活動資訊</a></li>
+      <li><a href="#ticket-info">售票資訊</a></li>
+      <li><a href="#mainFaqSection">常見問題</a></li>
+      <li><a href="#noticesSection">注意事項</a></li>
+      <li><a href="#organizer-section">聯絡主辦</a></li>
+    </ul>
+  </nav>
+
+  <!-- 浮動按鈕 -->
+  <a href="https://lihi.cc/z2qAk/mwlarpcom" class="floating-btn" target="_blank" id="bookingBtn">立即<br>預約</a>
 
   <!-- Hero Section -->
-  <section class="hero-text" data-aos="fade-up">
-    <img src="https://i.ibb.co/PZqYBGxJ/HT-logo.png" style="width:10vh" alt="LOGO" />
+  <section class="hero-text" id="hero">
+    <img src="https://i.ibb.co/0ptbMj5s/HT-logo.webp" style="width:10vh" alt="LOGO" loading="eager" />
     <h1>花月酒店謀殺案</h1>
-    <h2>【期間限定，6/27-6/28快閃活動】</h2>
+    <h2>【期間限定，沉浸式實境遊戲】</h2>
     <p>
-      「いらっしゃいませ！」<br>
-      置身在燈紅酒綠之中，<br>
-      任由愛恨情仇催化釀酒。<br>
-      「乾杯！」
+      置身在燈紅酒綠之中<br>
+      任由愛恨情仇催化釀酒
     </p>
+    <h3>「乾杯！」</h3>
   </section>
-
-  <!-- 活動介紹區塊們 -->
-  <section class="section" data-aos="fade-up">
-    <img src="https://i.ibb.co/chjqpdDs/MAIN.png" alt="花月酒店" />
+  
+  <!-- 活動介紹 - 花月酒店 -->
+  <section class="section" id="story-intro">
+    <img src="https://i.ibb.co/4w8FWxL9/MAIN.webp" alt="花月酒店場景" loading="lazy" /> <!-- Corrected Image -->
     <div class="text">
       <h3>花月酒店</h3>
       <p>
@@ -289,25 +582,26 @@
     </div>
   </section>
 
-  <section class="section" data-aos="fade-up">
-    <img src="https://i.ibb.co/bMpQTj70/HT-F1.png" alt="大型實境推理" />
+  <!-- 活動介紹 - 大型實境推理 -->
+  <section class="section" id="story-details"> <!-- Added ID for potential more granular linking -->
+    <img src="https://i.ibb.co/JwYjDfFm/HT-F1.webp" alt="大型實境推理情境" loading="lazy" />
     <div class="text">
       <h3>大型實境推理</h3>
       <p>
         「我記得她跟媽媽桑鬧得很不愉快……」<br>
         「兇手應該是他吧，畢竟之前發生了那種事……」<br>
         「她會有今天這個下場我一點都不意外。」<br>
-         <b style="color:#F05E1C">&nbsp;和同場演員一起痛快飆戲！</b>
+        <b style="color:#F05E1C"> 和同場演員一起痛快飆戲！</b>
       </p>
     </div>
   </section>
 
-  <section class="mid" data-aos="fade-up">
+  <section class="mid">
     <h3>整條街上議論紛紛，<br>你們決定往花月的大門口走去。</h3>
     <h3>但目的並不是消費，<br>而是調查整起殺人事件背後的真相……</h3>
   </section>
-  
-  <section class="features" data-aos="fade-up">
+
+  <section class="features" id="features-section">
     <div class="feature-box">
       <h4>◆ 專屬時段、封館互動</h4>
       <p>105分鐘驚喜不斷，讓每位來酒店的貴賓一起深入體驗遊戲，創造不同的回憶。</p>
@@ -326,8 +620,8 @@
     </div>
   </section>
 
-  <section class="section" data-aos="fade-up">
-    <img src="https://i.ibb.co/N2SWpkmm/HT-M.png" alt="活動資訊" />
+  <section class="section" id="activity-info">
+    <img src="https://i.ibb.co/60VWgs2m/HT-M.webp" loading="lazy" alt="活動資訊圖示" /> <!-- Corrected Image -->
     <div class="text">
       <h3>📣活動資訊</h3>
       <p>
@@ -338,8 +632,8 @@
     </div>
   </section>
 
-  <section class="section" data-aos="fade-up">
-    <img src="https://i.ibb.co/fmPnXSC/HT-F2.png" alt="售票資訊" />
+  <section class="section" id="ticket-info">
+    <img src="https://i.ibb.co/Y7T6d7Df/HT-F2.webp" loading="lazy" alt="售票資訊圖示" /> <!-- Corrected Image -->
     <div class="text">
       <h3>📣售票資訊</h3>
       <p>
@@ -354,55 +648,255 @@
   </section>
 
   <!-- FAQ -->
-  <section class="faq" data-aos="fade-up">
-    <h3>常見問題 FAQ</h3>
-    <div class="faq-item">
-      <h4><b>+</b> Q1:遊戲要怎麼玩呢？</h4>
-      <p>&emsp;A:行前會收到遊戲說明影片，現場領取解謎包並與演員互動取得線索推理真相。</p>
-    </div>
-    <div class="faq-item">
-      <h4><b>+</b> Q2:遊戲會有服裝可以更換嗎？</h4>
-      <p>&emsp;A:無提供換裝，但建議穿著復古風服飾（80年代旗袍、西裝等）。</p>
-    </div>
-    <div class="faq-item">
-      <h4><b>+</b> Q3:是否會有肢體接觸？</h4>
-      <p>&emsp;A:不會刻意觸碰玩家，請勿攻擊或觸碰演員，否則中止體驗且不退款。</p>
+  <section class="faq-section" id="mainFaqSection">
+    <h4 class="faq-main-title"><span class="arrow">▽</span>  常見問題&nbsp <span class="arrow">▽</span></h4>
+    <div class="faq-list-container">
+      <div class="faq-item">
+        <h4><span class="arrow">▽</span> Q: 遊戲當天要怎麼報到呢？</h4>
+        <p> A: 已於網路預訂成功的玩家，請於當天至遊戲現場報到處，提供訂位人姓名及電話，資料核對無誤後便可以準備進行遊戲囉！</p>
+      </div>
+      <div class="faq-item">
+        <h4><span class="arrow">▽</span> Q: 遊戲要怎麼玩呢？</h4>
+        <p> A: 玩家會於行前收到遊戲說明影片，並於活動當天報到時領取遊戲解謎包。透過觀察現場資訊以及與演員互動取得相應的線索，藉此推理出本次案件的真相。詳細遊戲規則可見行前說明影片及遊戲解謎包內的說明。</p>
+      </div>
+      <div class="faq-item">
+        <h4><span class="arrow">▽</span> Q: 105分鐘內無法完成遊戲怎麼辦？</h4>
+        <p> A: 遊戲時長取決於玩家推理進度，若推理進度落後，將會由現場的工作人員或演員協助進行遊戲。</p>
+      </div>
+      <div class="faq-item">
+        <h4><span class="arrow">▽</span> Q: 進行遊戲需要下載APP嗎？</h4>
+        <p> A: 遊戲會需要使用LINE進行，遊戲玩家中最少需要有一人安裝LINE程式。</p>
+      </div>
+      <div class="faq-item">
+        <h4><span class="arrow">▽</span> Q: 現場會提供WIFI嗎？</h4>
+        <p> A: 現場會提供WIFI，遊戲玩家中至少需有一人的手機可上網。</p>
+      </div>
+      <div class="faq-item">
+        <h4><span class="arrow">▽</span> Q: 現場會提供餐點嗎？</h4>
+        <p> A: 遊戲會提供一人一杯飲品，於訂位時可選擇含酒精飲品或無酒精飲品，現場不開放攜帶外食參加遊戲，僅可攜帶瓶裝水。</p>
+      </div>
+      <div class="faq-item">
+        <h4><span class="arrow">▽</span> Q: 遊戲會有服裝可以更換嗎？</h4>
+        <p> A: 遊戲無提供換裝服務，但玩家們可穿著復古風服裝（80年代旗袍、西裝、襯衫等）增加遊戲沉浸感喔！</p>
+      </div>
+      <div class="faq-item">
+        <h4><span class="arrow">▽</span> Q: 如果我們超過6個人，還可以同一組進行遊戲嗎？</h4>
+        <p> A: 因遊戲人數上限無法更動，建議可拆成兩組相互競賽也非常有趣唷！</p>
+      </div>
+      <div class="faq-item">
+        <h4><span class="arrow">▽</span> Q: 可以帶小孩一起玩嗎？</h4>
+        <p> A: 遊戲內容涉及成人議題，不開放12歲以下玩家一同參與遊戲。</p>
+      </div>
+      <div class="faq-item">
+        <h4><span class="arrow">▽</span> Q: 若同行夥伴看不太懂中文的話可以玩嗎？</h4>
+        <p> A: 團隊中至少須有一人熟悉中文閱讀與對話。</p>
+      </div>
+      <div class="faq-item">
+        <h4><span class="arrow">▽</span> Q: 是否會有肢體接觸？</h4>
+        <p> A: 工作人員於活動中不會刻意觸碰玩家，玩家也請勿觸碰、傷害、攻擊工作人員，若造成工作人員不適或受傷，將立即終止遊戲，不予退還遊戲費用，並有予以求償之權利。</p>
+      </div>
     </div>
   </section>
 
-  <p>&emsp;</p>
-
-  <footer data-aos="fade-up">
-    <div style="text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);">
-    <h2>乾杯！敲響花月酒店的大門！</h2>
-    <h3>いらっしゃいませ！</h3>
+  <!-- 注意事項 -->
+  <section class="faq-section" id="noticesSection">
+    <h4 class="notice-title"><span class="arrow">▽</span> 遊戲注意事項&nbsp <span class="arrow">▽</span></h4>
+    <div class="notice-content">
+      <p>1.網頁上顯示的金額為遊戲費用全額，除早鳥優惠以外，不適用任何優惠。請於訂場後24小時內支付，逾期則場次自動釋出不另行通知。<br>
+   <br>
+  2.支付方式有兩種：<br>
+  A. 信用卡線上刷卡<br>
+  以「信用卡線上刷卡」支付時，需於付款頁面直接付款。如未於第一時間付款，為保護您的個資，系統付款頁面將不予保留，需「取消預約」後「重新預訂」，方能再次刷卡預約。（為保護您的訂位優先權益，建議第一時間支付，以免在退訂、重訂之時間差中，導致您的訂位保留權益受損喔！）<br>
+  B. 超商付款<br>
+  以「超商付款」支付時，系統將提供繳費代碼，請於24小時內至超商繳費即完成付款。<br>
+  付款完成後，系統將在30分鐘内寄送預約成功之電子郵件。<br>
+   <br>
+  3.因部分故事情節涵蓋不宜未滿12歲以下青少年之內容，為維護其身心安全，不開放12歲以下玩家參與遊戲。13-15歲之青少年進場須由家長陪同。<br>
+   <br>
+  4.預約網站所顯示之時間為遊戲開場時間，請務必提前5-10分鐘到現場完成報到手續，遲到入場將嚴重影響本次體驗，為不影響其他玩家的權益與整體流程，若於體驗開場後遲到抵達，將依工作人員的指示於特定時間點入場。<br>
+   <br>
+  5.請務必詳加確認訂購場次及人數，訂購後如需更換、取消場次，請於時限內聯繫我們：<br>
+  A. 更換場次：請於活動當日『5天前』聯繫我們。<br>
+  例：6/20為活動日，6/15起即不受理更換場次，需於6/14(含)前提出申請。<br>
+  B. 取消場次：請於活動當日『10天前』聯繫我們，我們將扣除10%金流手續費後退還。<br>
+  例：6/20為活動日，6/10起即不受理取消場次，需於6/9(含)前提出申請。<br>
+  C. 異動人數：不提供5人團體票補差額調整至6人團體票，亦不開放6人團體票調整為5人團體票之差額退款。如需異動人數，請於時限内取消場次後重新預訂。<br>
+   <br>
+  6.如需更換場次、取消場次及調整飲品數量，請私訊臉書「謀殺衛斯理工作室」粉絲專頁聯繫客服人員。如於系統上自行取消訂單，恕無法退還款項。此主題為特殊限定活動，無法變更為其他劇本殺場次。<br>
+   <br>
+  7.活動當日如因非可究責主辦方之因素導致活動無法進行或提前中止（如同行玩家人數不符遊戲限制、遲到早退等），將不予退還款項。如因不可抗力等因素（如颱風、停電等），我們將暫停當日營業，並主動向您聯繫延期或退款事項。<br>
+   <br>
+  8.遊戲過程中，禁止玩家言語或肢體攻擊其他玩家或工作人員，若發生以上狀況造成現場人員身心不適，謀殺衛斯理工作室有權直接終止遊戲，不予退還遊戲費用並保留追訴權。</p>
     </div>
-    <a href="https://larpwesley.simplybook.asia/v2/#book/location/8/count/1/provider/any/" target="_blank" class="footer-btn">立即預約</a>
-
+  </section>
+  
+    <footer>
+    <div style="text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);">
+      <h2>乾杯！<br>敲響花月酒店的大門！</h2>
+      <h3>いらっしゃいませ！</h3>
+    </div>
+    <a href="https://lihi.cc/z2qAk/mwlarpcom" target="_blank" class="footer-btn">立即預約</a>
   </footer>
+  
+  <!-- 主辦單位資訊 -->
+  <section class="organizer-info" id="organizer-section">
+    <p class="organizer-label">主辦單位資訊</p>
+    <h3>謀殺衛斯理工作室</h3>
+    <div class="social-links">
+      <a href="https://www.instagram.com/murderwesleylarp/" target="_blank" rel="noopener noreferrer" aria-label="謀殺衛斯理 Instagram">
+        
+        <img src="https://i.ibb.co/XZ7Q3vbj/instagram.png" alt="Instagram">
+      </a>
+      <a href="https://www.facebook.com/larpwesley/" target="_blank" rel="noopener noreferrer" aria-label="謀殺衛斯理 Facebook">
+        <img src="https://i.ibb.co/cKnTTJCN/facebook.png" alt="Facebook">
+      </a>
+      <a href="https://www.mwlarp.com/scenario/huayuejiudianmoushaan" target="_blank" rel="noopener noreferrer" aria-label="謀殺衛斯理 官方網站">
+        
+        <img src="https://i.ibb.co/WvvyqGDf/internet.png" alt="官方網站">
+      </a>
+    </div>
+    <a href="tel:+886-2-25221433">TEL：(02)2522-1433</a><br>
+    <a href="https://maps.app.goo.gl/5NLyfSmyRDbsvSXo9">台北市中山區天祥路35號B1</a>
+  </section>
 
-  <!-- AOS JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
-    AOS.init();
+    // 圖片懶載入優化
+    function lazyLoadImages() {
+      const images = document.querySelectorAll('img[loading="lazy"]');
+      
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              if (img.dataset.src) {
+                img.src = img.dataset.src;
+              }
+              img.style.opacity = '1';
+              observer.unobserve(img);
+            }
+          });
+        });
+        
+        images.forEach(img => {
+          imageObserver.observe(img);
+        });
+      } else {
+        images.forEach(img => {
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+          }
+          img.style.opacity = '1';
+        });
+      }
+    }
 
-    // Splash banner fade out
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-        const splash = document.getElementById('splash');
-        splash.classList.add('fade-out');
-        setTimeout(() => {
-          splash.style.display = 'none';
-        }, 1000);
-      }, 500);
-    });
+    // --- TOC Navigation Logic ---
+    const tocToggle = document.querySelector('.toc-toggle');
+    const tocMenu = document.querySelector('.toc-menu');
+    const tocLinks = document.querySelectorAll('.toc-menu li a');
 
-    // FAQ toggle
-    document.querySelectorAll('.faq-item h4').forEach((question) => {
-      question.addEventListener('click', () => {
-        const answer = question.nextElementSibling;
-        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+    if (tocToggle && tocMenu) {
+      tocToggle.addEventListener('click', () => {
+        tocMenu.classList.toggle('active');
+        tocToggle.classList.toggle('active');
+        const isExpanded = tocMenu.classList.contains('active');
+        tocToggle.setAttribute('aria-expanded', isExpanded);
       });
+
+      tocLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (tocMenu.classList.contains('active')) {
+            tocMenu.classList.remove('active');
+            tocToggle.classList.remove('active');
+            tocToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+      
+      // Close TOC if clicking outside
+      document.addEventListener('click', (event) => {
+        if (!tocNav.contains(event.target) && tocMenu.classList.contains('active')) {
+            tocMenu.classList.remove('active');
+            tocToggle.classList.remove('active');
+            tocToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+
+    // --- FAQ Accordion Logic ---
+    function setupAccordion(sectionId, titleSelector, contentContainerSelector, itemSelector, itemTitleSelector, itemContentSelector) {
+        const section = document.getElementById(sectionId);
+        if (!section) return;
+
+        const mainTitle = section.querySelector(titleSelector);
+        const listContainer = section.querySelector(contentContainerSelector);
+
+        if (mainTitle && listContainer) {
+            mainTitle.addEventListener('click', () => {
+                const isOpen = listContainer.style.display === 'block';
+                listContainer.style.display = isOpen ? 'none' : 'block';
+                mainTitle.classList.toggle('open', !isOpen);
+                // Arrow update already handled by .open class in CSS
+            });
+        }
+
+        if (itemSelector) { // For two-level accordions like main FAQ
+            section.querySelectorAll(itemSelector + ' ' + itemTitleSelector).forEach((questionTitle) => {
+                questionTitle.addEventListener('click', () => {
+                    const answer = questionTitle.nextElementSibling;
+                    if (answer && answer.matches(itemContentSelector)) {
+                        const isOpen = answer.style.display === 'block';
+                        answer.style.display = isOpen ? 'none' : 'block';
+                        questionTitle.classList.toggle('open', !isOpen);
+                    }
+                });
+            });
+        }
+    }
+
+    // Setup for Main FAQ (two-level)
+    setupAccordion('mainFaqSection', '.faq-main-title', '.faq-list-container', '.faq-item', 'h4', 'p');
+    
+    // Setup for Notices (single-level, main title toggles content directly)
+    // The setupAccordion function is slightly more generic, so we'll use the direct selectors
+    const noticeSection = document.getElementById('noticesSection');
+    if (noticeSection) {
+        const noticeTitle = noticeSection.querySelector('.notice-title');
+        const noticeContent = noticeSection.querySelector('.notice-content');
+        if (noticeTitle && noticeContent) {
+            noticeTitle.addEventListener('click', () => {
+                const isOpen = noticeContent.style.display === 'block';
+                noticeContent.style.display = isOpen ? 'none' : 'block';
+                noticeTitle.classList.toggle('open', !isOpen);
+            });
+        }
+    }
+
+
+    // 浮動按鈕控制
+    const btn = document.getElementById('bookingBtn');
+    const pageFooter = document.querySelector('footer'); 
+
+    if (btn && pageFooter) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            btn.classList.add('hidden');
+          } else {
+            btn.classList.remove('hidden');
+          }
+        });
+      }, {
+        threshold: 0.05 
+      });
+      observer.observe(pageFooter);
+    }
+
+    // 初始化
+    document.addEventListener('DOMContentLoaded', () => {
+      lazyLoadImages();
     });
   </script>
 </body>
