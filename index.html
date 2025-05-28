@@ -15,6 +15,7 @@
   <link rel="preload" as="image" href="https://i.ibb.co/4w8FWxL9/MAIN.webp" />
   
   <style>
+    /* 您原有的 CSS 樣式保持不變 */
     :root {
       --bg-color: #261E47;
       --text-color-main: #F7C242;
@@ -570,7 +571,7 @@
   
   <!-- 活動介紹 - 花月酒店 -->
   <section class="section" id="story-intro">
-    <img src="https://i.ibb.co/60VWgs2m/HT-M.webp" alt="花月酒店場景" loading="lazy" /> <!-- Corrected Image -->
+    <img src="https://i.ibb.co/60VWgs2m/HT-M.webp" alt="花月酒店場景" loading="lazy" />
     <div class="text">
       <h3>花月酒店</h3>
       <p>
@@ -583,7 +584,7 @@
   </section>
 
   <!-- 活動介紹 - 大型實境推理 -->
-  <section class="section" id="story-details"> <!-- Added ID for potential more granular linking -->
+  <section class="section" id="story-details">
     <img src="https://i.ibb.co/JwYjDfFm/HT-F1.webp" alt="大型實境推理情境" loading="lazy" />
     <div class="text">
       <h3>大型實境推理</h3>
@@ -591,10 +592,20 @@
         「我記得她跟媽媽桑鬧得很不愉快……」<br>
         「兇手應該是他吧，畢竟之前發生了那種事……」<br>
         「她會有今天這個下場我一點都不意外。」<br>
-        <b style="color:#F05E1C"> 和同場演員一起痛快飆戲！</b>
+        <b style="color:#F05E1C"> 和同場演員一起痛快飆戲！</b>
       </p>
     </div>
   </section>
+  
+<iframe
+    id="youtubeBackgroundPlayer"
+    width="0"
+    height="0"
+    src="https://www.youtube.com/embed/Oc6tUMfUQvk?autoplay=1&loop=1&mute=1&enablejsapi=1"
+    frameborder="0"
+    allow="autoplay; encrypted-media;"
+    style="position: absolute; top: -9999px; left: -9999px; width: 0; height: 0; border: 0; overflow: hidden; display:none;"
+></iframe>
 
   <section class="mid">
     <h3>整條街上議論紛紛，<br>你們決定往花月的大門口走去。</h3>
@@ -621,7 +632,7 @@
   </section>
 
   <section class="section" id="activity-info">
-    <img src="https://i.ibb.co/Y7T6d7Df/HT-F2.webp" loading="lazy" alt="活動資訊圖示" /> <!-- Corrected Image -->
+    <img src="https://i.ibb.co/Y7T6d7Df/HT-F2.webp" loading="lazy" alt="活動資訊圖示" />
     <div class="text">
       <h3>📣活動資訊</h3>
       <p>
@@ -633,7 +644,7 @@
   </section>
 
   <section class="section" id="ticket-info">
-    <img src="https://i.ibb.co/4w8FWxL9/MAIN.webp" loading="lazy" alt="售票資訊圖示" /> <!-- Corrected Image -->
+    <img src="https://i.ibb.co/4w8FWxL9/MAIN.webp" loading="lazy" alt="售票資訊圖示" />
     <div class="text">
       <h3>📣售票資訊</h3>
       <p>
@@ -649,50 +660,50 @@
 
   <!-- FAQ -->
   <section class="faq-section" id="mainFaqSection">
-    <h4 class="faq-main-title"><span class="arrow">▽</span>  常見問題&nbsp <span class="arrow">▽</span></h4>
+    <h4 class="faq-main-title"><span class="arrow">▽</span>&nbsp常見問題&nbsp <span class="arrow">▽</span></h4>
     <div class="faq-list-container">
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 遊戲當天要怎麼報到呢？</h4>
+        <h4><span class="arrow">▽</span> Q: 遊戲當天要怎麼報到呢？</h4>
         <p> A: 已於網路預訂成功的玩家，請於當天至遊戲現場報到處，提供訂位人姓名及電話，資料核對無誤後便可以準備進行遊戲囉！</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 遊戲要怎麼玩呢？</h4>
+        <h4><span class="arrow">▽</span> Q: 遊戲要怎麼玩呢？</h4>
         <p> A: 玩家會於行前收到遊戲說明影片，並於活動當天報到時領取遊戲解謎包。透過觀察現場資訊以及與演員互動取得相應的線索，藉此推理出本次案件的真相。詳細遊戲規則可見行前說明影片及遊戲解謎包內的說明。</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 105分鐘內無法完成遊戲怎麼辦？</h4>
+        <h4><span class="arrow">▽</span> Q: 105分鐘內無法完成遊戲怎麼辦？</h4>
         <p> A: 遊戲時長取決於玩家推理進度，若推理進度落後，將會由現場的工作人員或演員協助進行遊戲。</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 進行遊戲需要下載APP嗎？</h4>
+        <h4><span class="arrow">▽</span> Q: 進行遊戲需要下載APP嗎？</h4>
         <p> A: 遊戲會需要使用LINE進行，遊戲玩家中最少需要有一人安裝LINE程式。</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 現場會提供WIFI嗎？</h4>
+        <h4><span class="arrow">▽</span> Q: 現場會提供WIFI嗎？</h4>
         <p> A: 現場會提供WIFI，遊戲玩家中至少需有一人的手機可上網。</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 現場會提供餐點嗎？</h4>
+        <h4><span class="arrow">▽</span> Q: 現場會提供餐點嗎？</h4>
         <p> A: 遊戲會提供一人一杯飲品，於訂位時可選擇含酒精飲品或無酒精飲品，現場不開放攜帶外食參加遊戲，僅可攜帶瓶裝水。</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 遊戲會有服裝可以更換嗎？</h4>
+        <h4><span class="arrow">▽</span> Q: 遊戲會有服裝可以更換嗎？</h4>
         <p> A: 遊戲無提供換裝服務，但玩家們可穿著復古風服裝（80年代旗袍、西裝、襯衫等）增加遊戲沉浸感喔！</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 如果我們超過6個人，還可以同一組進行遊戲嗎？</h4>
+        <h4><span class="arrow">▽</span> Q: 如果我們超過6個人，還可以同一組進行遊戲嗎？</h4>
         <p> A: 因遊戲人數上限無法更動，建議可拆成兩組相互競賽也非常有趣唷！</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 可以帶小孩一起玩嗎？</h4>
+        <h4><span class="arrow">▽</span> Q: 可以帶小孩一起玩嗎？</h4>
         <p> A: 遊戲內容涉及成人議題，不開放12歲以下玩家一同參與遊戲。</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 若同行夥伴看不太懂中文的話可以玩嗎？</h4>
+        <h4><span class="arrow">▽</span> Q: 若同行夥伴看不太懂中文的話可以玩嗎？</h4>
         <p> A: 團隊中至少須有一人熟悉中文閱讀與對話。</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 是否會有肢體接觸？</h4>
+        <h4><span class="arrow">▽</span> Q: 是否會有肢體接觸？</h4>
         <p> A: 工作人員於活動中不會刻意觸碰玩家，玩家也請勿觸碰、傷害、攻擊工作人員，若造成工作人員不適或受傷，將立即終止遊戲，不予退還遊戲費用，並有予以求償之權利。</p>
       </div>
     </div>
@@ -700,7 +711,7 @@
 
   <!-- 注意事項 -->
   <section class="faq-section" id="noticesSection">
-    <h4 class="notice-title"><span class="arrow">▽</span> 遊戲注意事項&nbsp <span class="arrow">▽</span></h4>
+    <h3 class="notice-title"><span class="arrow">▽</span>&nbsp遊戲注意事項&nbsp <span class="arrow">▽</span></h3>
     <div class="notice-content">
       <p>1.網頁上顯示的金額為遊戲費用全額，除早鳥優惠以外，不適用任何優惠。請於訂場後24小時內支付，逾期則場次自動釋出不另行通知。<br>
    <br>
@@ -744,14 +755,12 @@
     <h3>謀殺衛斯理工作室</h3>
     <div class="social-links">
       <a href="https://www.instagram.com/murderwesleylarp/" target="_blank" rel="noopener noreferrer" aria-label="謀殺衛斯理 Instagram">
-        
         <img src="https://i.ibb.co/XZ7Q3vbj/instagram.png" alt="Instagram">
       </a>
       <a href="https://www.facebook.com/larpwesley/" target="_blank" rel="noopener noreferrer" aria-label="謀殺衛斯理 Facebook">
         <img src="https://i.ibb.co/cKnTTJCN/facebook.png" alt="Facebook">
       </a>
       <a href="https://www.mwlarp.com/scenario/huayuejiudianmoushaan" target="_blank" rel="noopener noreferrer" aria-label="謀殺衛斯理 官方網站">
-        
         <img src="https://i.ibb.co/WvvyqGDf/internet.png" alt="官方網站">
       </a>
     </div>
@@ -759,144 +768,207 @@
     <a href="https://maps.app.goo.gl/5NLyfSmyRDbsvSXo9">台北市中山區天祥路35號B1</a>
   </section>
 
+  <!-- YouTube Iframe API 載入 (這個要放在主要腳本之前) -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+
   <script>
-    // 圖片懶載入優化
-    function lazyLoadImages() {
-      const images = document.querySelectorAll('img[loading="lazy"]');
-      
-      if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const img = entry.target;
-              if (img.dataset.src) {
-                img.src = img.dataset.src;
+    document.addEventListener('DOMContentLoaded', () => {
+      let player; // YouTube 播放器實例
+      let musicUnmutedByClick = false; // 追蹤音樂是否已因點擊而取消靜音
+
+      // 1. YouTube Iframe API 載入完成後會呼叫此函數
+      window.onYouTubeIframeAPIReady = function() {
+          player = new YT.Player('youtubeBackgroundPlayer', {
+              events: {
+                  'onReady': onPlayerReady,
+                  'onStateChange': onPlayerStateChange
               }
-              img.style.opacity = '1';
-              observer.unobserve(img);
+          });
+      }
+
+      // 2. 當播放器準備好時
+      function onPlayerReady(event) {
+          console.log("YouTube Player 已準備就緒。");
+          // 確保影片開始時是靜音播放 (iframe 的 mute=1 應該已經處理了，這裡是雙重保險)
+          event.target.mute();
+          event.target.playVideo(); 
+          console.log("播放器已靜音並開始播放。");
+      }
+
+      // 3. 播放器狀態改變時
+      function onPlayerStateChange(event) {
+          if (event.data == YT.PlayerState.PLAYING) {
+              const MutedState = player.isMuted() ? "靜音" : "有聲";
+              console.log(`YouTube 影片正在播放 (目前狀態: ${MutedState})。`);
+          }
+          if (event.data == YT.PlayerState.ENDED) { // 影片結束時循環播放
+              console.log("YouTube 影片結束，嘗試循環播放。");
+              player.seekTo(0); 
+              player.playVideo();
+          }
+      }
+
+      // --- 圖片懶載入優化 ---
+      function lazyLoadImages() {
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        
+        if ('IntersectionObserver' in window) {
+          const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) { // 如果使用 data-src
+                  img.src = img.dataset.src;
+                } else if (img.src && !img.complete) { // 如果直接用 src 且未載入完成
+                  // 確保圖片能被觀察到變化
+                }
+                img.style.opacity = '1';
+                observer.unobserve(img);
+              }
+            });
+          });
+          
+          images.forEach(img => {
+            imageObserver.observe(img);
+          });
+        } else { // Fallback for older browsers
+          images.forEach(img => {
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+            }
+            img.style.opacity = '1';
+          });
+        }
+      }
+
+      // --- TOC Navigation Logic ---
+      const tocNav = document.getElementById('tocNav'); // tocNav 的定義
+      const tocToggle = document.querySelector('.toc-toggle');
+      const tocMenu = document.querySelector('.toc-menu');
+      const tocLinks = document.querySelectorAll('.toc-menu li a');
+
+      if (tocToggle && tocMenu) {
+        tocToggle.addEventListener('click', () => {
+          tocMenu.classList.toggle('active');
+          tocToggle.classList.toggle('active');
+          const isExpanded = tocMenu.classList.contains('active');
+          tocToggle.setAttribute('aria-expanded', isExpanded);
+
+          // --- 新增：點擊目錄按鈕時，如果音樂尚未手動取消靜音，則嘗試取消靜音 ---
+          if (!musicUnmutedByClick && player && typeof player.unMute === 'function') {
+            try {
+              player.unMute();    // 嘗試取消靜音
+              player.playVideo(); // 確保影片在播放狀態
+              musicUnmutedByClick = true; // 標記已嘗試過
+              console.log("音樂已透過目錄按鈕點擊取消靜音並播放。");
+              
+              // 短暫延遲後檢查是否真的取消了靜音
+              setTimeout(() => {
+                  if (player.isMuted()) {
+                      console.warn("警告：嘗試取消靜音後，影片仍然是靜音狀態。瀏覽器可能已阻止此操作。");
+                  } else {
+                      console.log("成功取消靜音。");
+                  }
+              }, 500);
+
+            } catch (e) {
+                console.error("嘗試取消靜音或播放時發生錯誤:", e);
+            }
+          }
+          // --- 新增結束 ---
+        });
+
+        tocLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            if (tocMenu.classList.contains('active')) {
+              tocMenu.classList.remove('active');
+              tocToggle.classList.remove('active');
+              tocToggle.setAttribute('aria-expanded', 'false');
             }
           });
         });
         
-        images.forEach(img => {
-          imageObserver.observe(img);
-        });
-      } else {
-        images.forEach(img => {
-          if (img.dataset.src) {
-            img.src = img.dataset.src;
+        // Close TOC if clicking outside
+        document.addEventListener('click', (event) => {
+          if (tocNav && !tocNav.contains(event.target) && tocMenu.classList.contains('active')) { // 確保 tocNav 存在
+              tocMenu.classList.remove('active');
+              tocToggle.classList.remove('active');
+              tocToggle.setAttribute('aria-expanded', 'false');
           }
-          img.style.opacity = '1';
         });
       }
-    }
 
-    // --- TOC Navigation Logic ---
-    const tocToggle = document.querySelector('.toc-toggle');
-    const tocMenu = document.querySelector('.toc-menu');
-    const tocLinks = document.querySelectorAll('.toc-menu li a');
 
-    if (tocToggle && tocMenu) {
-      tocToggle.addEventListener('click', () => {
-        tocMenu.classList.toggle('active');
-        tocToggle.classList.toggle('active');
-        const isExpanded = tocMenu.classList.contains('active');
-        tocToggle.setAttribute('aria-expanded', isExpanded);
-      });
+      // --- FAQ Accordion Logic ---
+      function setupAccordion(sectionId, titleSelector, contentContainerSelector, itemSelector, itemTitleSelector, itemContentSelector) {
+          const section = document.getElementById(sectionId);
+          if (!section) return;
 
-      tocLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          if (tocMenu.classList.contains('active')) {
-            tocMenu.classList.remove('active');
-            tocToggle.classList.remove('active');
-            tocToggle.setAttribute('aria-expanded', 'false');
+          const mainTitle = section.querySelector(titleSelector);
+          const listContainer = section.querySelector(contentContainerSelector);
+
+          if (mainTitle && listContainer) {
+              mainTitle.addEventListener('click', () => {
+                  const isOpen = listContainer.style.display === 'block';
+                  listContainer.style.display = isOpen ? 'none' : 'block';
+                  mainTitle.classList.toggle('open', !isOpen);
+              });
           }
-        });
-      });
+
+          if (itemSelector) { 
+              section.querySelectorAll(itemSelector + ' ' + itemTitleSelector).forEach((questionTitle) => {
+                  questionTitle.addEventListener('click', () => {
+                      const answer = questionTitle.nextElementSibling;
+                      if (answer && answer.matches(itemContentSelector)) {
+                          const isOpen = answer.style.display === 'block';
+                          answer.style.display = isOpen ? 'none' : 'block';
+                          questionTitle.classList.toggle('open', !isOpen);
+                      }
+                  });
+              });
+          }
+      }
+
+      setupAccordion('mainFaqSection', '.faq-main-title', '.faq-list-container', '.faq-item', 'h4', 'p');
       
-      // Close TOC if clicking outside
-      document.addEventListener('click', (event) => {
-        if (!tocNav.contains(event.target) && tocMenu.classList.contains('active')) {
-            tocMenu.classList.remove('active');
-            tocToggle.classList.remove('active');
-            tocToggle.setAttribute('aria-expanded', 'false');
-        }
-      });
-    }
-
-
-    // --- FAQ Accordion Logic ---
-    function setupAccordion(sectionId, titleSelector, contentContainerSelector, itemSelector, itemTitleSelector, itemContentSelector) {
-        const section = document.getElementById(sectionId);
-        if (!section) return;
-
-        const mainTitle = section.querySelector(titleSelector);
-        const listContainer = section.querySelector(contentContainerSelector);
-
-        if (mainTitle && listContainer) {
-            mainTitle.addEventListener('click', () => {
-                const isOpen = listContainer.style.display === 'block';
-                listContainer.style.display = isOpen ? 'none' : 'block';
-                mainTitle.classList.toggle('open', !isOpen);
-                // Arrow update already handled by .open class in CSS
-            });
-        }
-
-        if (itemSelector) { // For two-level accordions like main FAQ
-            section.querySelectorAll(itemSelector + ' ' + itemTitleSelector).forEach((questionTitle) => {
-                questionTitle.addEventListener('click', () => {
-                    const answer = questionTitle.nextElementSibling;
-                    if (answer && answer.matches(itemContentSelector)) {
-                        const isOpen = answer.style.display === 'block';
-                        answer.style.display = isOpen ? 'none' : 'block';
-                        questionTitle.classList.toggle('open', !isOpen);
-                    }
-                });
-            });
-        }
-    }
-
-    // Setup for Main FAQ (two-level)
-    setupAccordion('mainFaqSection', '.faq-main-title', '.faq-list-container', '.faq-item', 'h4', 'p');
-    
-    // Setup for Notices (single-level, main title toggles content directly)
-    // The setupAccordion function is slightly more generic, so we'll use the direct selectors
-    const noticeSection = document.getElementById('noticesSection');
-    if (noticeSection) {
-        const noticeTitle = noticeSection.querySelector('.notice-title');
-        const noticeContent = noticeSection.querySelector('.notice-content');
-        if (noticeTitle && noticeContent) {
-            noticeTitle.addEventListener('click', () => {
-                const isOpen = noticeContent.style.display === 'block';
-                noticeContent.style.display = isOpen ? 'none' : 'block';
-                noticeTitle.classList.toggle('open', !isOpen);
-            });
-        }
-    }
-
-
-    // 浮動按鈕控制
-    const btn = document.getElementById('bookingBtn');
-    const pageFooter = document.querySelector('footer'); 
-
-    if (btn && pageFooter) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            btn.classList.add('hidden');
-          } else {
-            btn.classList.remove('hidden');
+      const noticeSection = document.getElementById('noticesSection');
+      if (noticeSection) {
+          const noticeTitle = noticeSection.querySelector('.notice-title');
+          const noticeContent = noticeSection.querySelector('.notice-content');
+          if (noticeTitle && noticeContent) {
+              noticeTitle.addEventListener('click', () => {
+                  const isOpen = noticeContent.style.display === 'block';
+                  noticeContent.style.display = isOpen ? 'none' : 'block';
+                  noticeTitle.classList.toggle('open', !isOpen);
+              });
           }
-        });
-      }, {
-        threshold: 0.05 
-      });
-      observer.observe(pageFooter);
-    }
+      }
 
-    // 初始化
-    document.addEventListener('DOMContentLoaded', () => {
+      // --- 浮動按鈕控制 ---
+      const btn = document.getElementById('bookingBtn');
+      const pageFooter = document.querySelector('footer'); 
+
+      if (btn && pageFooter) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              btn.classList.add('hidden');
+            } else {
+              btn.classList.remove('hidden');
+            }
+          });
+        }, {
+          threshold: 0.05 
+        });
+        observer.observe(pageFooter);
+      }
+
+      // --- 初始化呼叫 ---
       lazyLoadImages();
+
+      console.log("頁面腳本已初始化。背景音樂應在點擊目錄按鈕後嘗試播放。");
+      console.warn("請注意：背景音樂的自動播放與取消靜音高度依賴瀏覽器政策。建議提供明確的播放/靜音控制按鈕給使用者。");
+
     });
   </script>
 </body>
