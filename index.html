@@ -1,137 +1,143 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>花月酒店謀殺案沉浸式實境遊戲-謀殺衛斯理</title>
   <meta name="description" content="置身《花月酒店謀殺案》的迷離氛圍，體驗謀殺衛斯理工作室最新沉浸式實境推理遊戲。您將親自調查，與演員飆戲，解開謎團。限定場次，立即預約，揭開花月酒店的秘密！" />
-  <meta name="keywords" content="花月酒店謀殺案, 實境遊戲, 沉浸式體驗, 推理遊戲, 劇本殺, LARP, 台北活動, 謀殺衛斯理" /> 
+  <meta name="keywords" content="花月酒店謀殺案, 實境遊戲, 沉浸式體驗, 推理遊戲, 劇本殺, LARP, 台北活動, 謀殺衛斯理" />
 
-  <!-- Google Font -->
+  <!-- Google 字體：思源宋體 TC -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet" />
+  <!-- Google 字體：思源黑體 TC -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-  
-  <!-- 預載入關鍵圖片 -->
+
+  <!-- 預載入關鍵圖片資源，提升初始載入速度 -->
   <link rel="preload" as="image" href="https://i.ibb.co/m7KPpNT/WEB-BG.webp" />
   <link rel="preload" as="image" href="https://i.ibb.co/0ptbMj5s/HT-logo.webp" />
   <link rel="preload" as="image" href="https://i.ibb.co/4w8FWxL9/MAIN.webp" />
-  
+
   <style>
+    /* CSS 變數定義 */
     :root {
-      --bg-color: #261E47;
-      --text-color-main: #F7C242;
-      --text-color-secondary: #ffffff;
-      --font-family: 'Noto Sans TC', serif;
-      --font-weight: 500;
-      --text-scale: 1;
-      --nav-height: 60px; /* For potential body padding if nav was a solid bar */
+      --bg-color: #261E47; /* 主要背景色 */
+      --text-color-main: #F7C242; /* 主要文字顏色 (黃色系) */
+      --text-color-secondary: #ffffff; /* 次要文字顏色 (白色) */
+	  --text-color-highlight: #FF5809;/* 強調文字顏色(橘色) */
+      --font-family: 'Noto Sans TC', serif; /* 主要字體 */
+      --font-weight: 500; /* 主要字重 */
+      --text-scale: 1; /* 文字縮放基礎值 */
+      /* --nav-height: 60px; */ /* 導覽列高度，若導覽列為固定實體條時，可用於 body padding */
     }
 
     html {
-      font-size: calc(16px * var(--text-scale));
-      scroll-behavior: smooth; /* For smooth scrolling */
+      font-size: calc(16px * var(--text-scale)); /* 基本字體大小，可隨 --text-scale 調整 */
+      scroll-behavior: smooth; /* 啟用平滑捲動效果 */
     }
 
     html, body {
       width: 100%;
-      overflow-x: hidden;
+      overflow-x: hidden; /* 防止水平滾動條出現 */
     }
-    
+
+    /* 全局背景圖層 (固定於視窗，隨內容滾動) */
     body::before {
       content: "";
-      position: fixed;
+      position: fixed; /* 固定定位，使其不隨頁面滾動 */
       top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
+      width: 100vw; /* 視窗寬度 */
+      height: 100vh; /* 視窗高度 */
       background-image: url('https://i.ibb.co/LdmJgdgc/WEB-BG2.webp');
-      background-size: 100% auto;
+      background-size: 100% auto; /* 背景圖寬度填滿，高度自動 */
       background-repeat: no-repeat;
-      background-position: top center;
-      background-attachment: scroll;
-      z-index: -1;
+      background-position: top center; /* 背景圖置頂中對齊 */
+      background-attachment: scroll; /* 背景圖隨內容滾動 (若要固定則用 fixed) */
+      z-index: -1; /* 將背景圖層置於最底層 */
     }
 
     body {
       margin: 0;
       font-family: var(--font-family);
       color: var(--text-color-secondary);
-      overflow-x: hidden;
-      position: relative;
-      background-color: #050d1a;
-      min-height: 100vh;
-      /* padding-top: var(--nav-height); If nav was a solid bar */
+      position: relative; /* 設定相對定位，作為 ::before 定位的基準 */
+      background-color: #050d1a; /* 若背景圖未載入時的備用背景色 */
+      min-height: 100vh; /* 最小高度為視窗高度 */
+      /* padding-top: var(--nav-height); */ /* 若導覽列為固定實體條時的頂部內距 */
     }
 
     a {
       color: var(--text-color-main);
-      text-decoration: none;
+      text-decoration: none; /* 移除連結底線 */
     }
 
+    /* 通用段落樣式 */
     .text p {
-    padding-left: 3em; 
-    text-align: left;
-    padding-right: 3em; 
+      padding-left: 3em; /* 段落左內縮 */
+      text-align: left; /* 文字靠左對齊 */
+      padding-right: 3em; /* 段落右內縮 */
     }
 
-    /* Table of Contents Navigation */
+    /* 目錄導覽列 (TOC) */
     .toc-nav {
-      position: fixed;
+      position: fixed; /* 固定在視窗右上方 */
       top: 15px;
       right: 15px;
-      z-index: 1001; /* Above floating button */
+      z-index: 1001; /* 層級高於浮動按鈕 */
     }
 
+    /* 目錄切換按鈕 (漢堡選單圖示) */
     .toc-toggle {
-      background-color: rgba(247, 194, 66, 0.85); /* Main yellow, slightly transparent */
+      background-color: rgba(247, 194, 66, 0.85); /* 主黃色，略透明 */
       color: var(--bg-color);
       border: none;
-      border-radius: 50%;
+      border-radius: 50%; /* 圓形按鈕 */
       width: 45px;
       height: 45px;
       cursor: pointer;
       display: flex;
-      flex-direction: column;
-      justify-content: space-around;
+      flex-direction: column; /* 三條線垂直排列 */
+      justify-content: space-around; /* 線條均勻分布 */
       align-items: center;
       padding: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-    .toc-toggle span {
+    .toc-toggle span { /* 漢堡選單的線條 */
       display: block;
       width: 20px;
       height: 2px;
       background-color: var(--bg-color);
       border-radius: 1px;
-      transition: all 0.3s ease;
+      transition: all 0.3s ease; /* 動畫效果 */
     }
+    /* 按鈕 active 狀態 (叉叉圖示) */
     .toc-toggle.active span:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
+      transform: translateY(8.5px) rotate(45deg);
     }
     .toc-toggle.active span:nth-child(2) {
-      opacity: 0;
+      opacity: 0; /* 中間線條隱藏 */
     }
     .toc-toggle.active span:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
+      transform: translateY(-8.5px) rotate(-45deg);
     }
 
-
+    /* 目錄選單 */
     .toc-menu {
       list-style: none;
       padding: 0;
       margin: 0;
       position: absolute;
-      top: 55px; /* Below button */
+      top: 55px; /* 位於切換按鈕下方 */
       right: 0;
-      background-color: rgba(38, 30, 71, 0.95); /* Dark BG, slightly transparent */
+      background-color: rgba(38, 30, 71, 0.95); /* 深色背景，略透明 */
       border-radius: 8px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       width: 180px;
-      max-height: 0;
+      max-height: 0; /* 預設隱藏 */
       overflow: hidden;
-      transition: max-height 0.3s ease-out;
+      transition: max-height 0.3s ease-out; /* 高度變動畫 */
     }
-    .toc-menu.active {
-      max-height: 500px; /* Adjust as needed for content */
+    .toc-menu.active { /* 選單展開狀態 */
+      max-height: 500px; /* 展開高度，可依內容調整 */
       padding: 10px 0;
     }
     .toc-menu li a {
@@ -147,314 +153,311 @@
       color: var(--bg-color);
     }
 
-
+    /* 浮動預約按鈕 */
     .floating-btn {
-      position: fixed;
+      position: fixed; /* 固定在視窗右下方 */
       right: 24px;
       bottom: 24px;
       width: 70px;
       height: 70px;
-      background-color: #F7C242;
-      color: #261E47;
+      background-color: #F7C242; /* 主黃色 */
+      color: #261E47; /* 深藍色文字 */
       font-weight: bold;
       font-size: 1rem;
-      border-radius: 50%; 
+      border-radius: 50%; /* 圓形 */
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
+      z-index: 1000; /* 層級 */
       text-decoration: none;
       transition: opacity 0.3s ease, transform 0.2s ease, background-color 0.3s ease;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: center; /* 垂直置中 */
+      justify-content: center; /* 水平置中 */
       text-align: center;
-      line-height: 1.25; 
-      padding: 5px; 
+      line-height: 1.25; /* 調整文字行高以容納兩行文字 */
+      padding: 5px; /* 內邊距 */
     }
-    
     .floating-btn:hover {
-      background-color: #e0aa2e;
-      transform: scale(1.05);
+      background-color: #e0aa2e; /* 滑鼠懸停時的背景色 */
+      transform: scale(1.05); /* 滑鼠懸停時放大 */
     }
-    
-    .floating-btn.hidden {
+    .floating-btn.hidden { /* 按鈕隱藏狀態 (例如滾動到頁尾時) */
       opacity: 0;
-      pointer-events: none;
+      pointer-events: none; /* 不可點擊 */
     }
 
+    /* Hero 區域 LOGO */
     .hero-logo {
-      width: 12vh; /* 從內聯樣式移過來 */
-      margin-bottom: 1rem; /* 調整LOGO圖片下方的間距，您可以修改這個值，例如 20px, 1rem, 2vh 等 */
-      margin-top: 2rem; /* 如果需要調整LOGO圖片上方的間距，取消註解並修改此值 */
+      width: 12vh; /* LOGO 寬度為視窗高度的 12% */
+      margin-bottom: 1rem; /* LOGO 下方間距 */
+      margin-top: 2rem; /* LOGO 上方間距 */
     }
 
+    /* Hero 區域文字內容 */
     .hero-text {
       position: relative;
       padding: 2rem;
       text-align: center;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); /* 文字陰影 */
     }
-
     .hero-text h1 {
-      font-family: 'Noto Serif TC', serif;
+      font-family: 'Noto Serif TC', serif; /* 使用思源宋體 */
       font-size: 4rem;
       color: var(--text-color-main);
-      margin-top: 0; 
+      margin-top: 0;
       margin-bottom: 1rem;
       font-weight: 800;
     }
-
     .hero-text h2 {
       font-size: 1.25rem;
       color: var(--text-color-secondary);
-      margin-top: 0; 
-      margin-bottom: 1rem; 
-      letter-spacing: 0.3em; 
+      margin-top: 0;
+      margin-bottom: 1rem;
+      letter-spacing: 0.3em; /* 字間距 */
     }
-    
     .hero-text h3 {
       font-size: 1.1rem;
       color: var(--text-color-secondary);
-      margin-top: 0; 
-      margin-bottom: 1rem; 
-      letter-spacing: 0.2em; 
+      margin-top: 0;
+      margin-bottom: 1rem;
+      letter-spacing: 0.2em;
     }
     .hero-text p {
       font-size:1rem;
       color: var(--text-color-secondary);
-      margin-top: 0; 
-      margin-bottom: 1rem; 
-      letter-spacing: 0.08em; 
+      margin-top: 0;
+      margin-bottom: 1rem;
+      letter-spacing: 0.08em;
     }
-    
+
+    /* 通用內容區塊 (Section) */
     .section {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: wrap; /* 允許換行 */
       padding: 3rem 1rem;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      scroll-margin-top: 20px; /* Offset for fixed nav */
+      align-items: center; /* 垂直居中對齊子元素 */
+      justify-content: center; /* 水平居中對齊子元素 */
+      gap: 2rem; /* 子元素間距 */
+      scroll-margin-top: 20px; /* 錨點連結時，頂部偏移量 (避免被固定導覽列遮擋) */
     }
-
-    .section:nth-child(even) {
+    .section:nth-child(even) { /* 偶數區塊，圖片與文字左右對調 */
       flex-direction: row-reverse;
     }
-
     .section img {
       width: 100%;
-      max-width: 400px;
-      flex: 1 1 400px;
+      max-width: 400px; /* 圖片最大寬度 */
+      flex: 1 1 400px; /* Flexbox 彈性設定 */
       border-radius: 8px;
-      loading: lazy;
-      object-fit: cover;
-      transition: opacity 0.3s ease;
+      loading: lazy; /* 圖片延遲載入 */
+      object-fit: cover; /* 圖片填滿容器並可能裁切 */
+      transition: opacity 0.3s ease; /* 透明度漸變 */
     }
-
-    .section img:not([src]) {
-      opacity: 0;
+    .section img:not([src]) { /* 若圖片 src 為空 (例如尚未載入完成) */
+      opacity: 0; /* 保持透明 */
     }
-
-    .section .text {
+    .section .text { /* 文字內容區塊 */
       max-width: 400px;
       flex: 1 1 400px;
     }
-
-    .section > h3, 
-    .section .text h3 { 
+    .section > h3,
+    .section .text h3 { /* 區塊標題 */
       color: var(--text-color-main);
       margin-bottom: 1rem;
       font-size: 1.8rem;
       text-align: center;
     }
 
-
+    /* 特色介紹區塊 (Grid 佈局) */
     .features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 自動適應欄位數量 */
       gap: 1.5rem;
       padding: 2rem;
-      scroll-margin-top: 20px; /* Offset for fixed nav */
+      scroll-margin-top: 20px; /* 錨點偏移 */
     }
-.features-icon {
-  display: block; /* 將圖片設為區塊元素，才能使用 margin: auto 進行水平置中 */
-  width: 70px;    /* 設定一個固定的寬度，您可以根據視覺效果調整此數值 */
-  height: 70px;   /* 設定一個固定的高度，使圖示區域為方形。如果圖示非方形，可只設寬度，讓高度自動調整，或調整此值 */
-  margin: 0 auto 1rem auto; 
-  object-fit: contain; /* 確保圖示內容完整顯示於指定區域內，並保持其原始長寬比，不會被裁切 */
-  loading: lazy; 
-}
-
-    .feature-box {
+    .features-icon {
+      display: block; /* 設為區塊元素以使用 margin: auto 水平置中 */
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 1rem auto; /* 上0 右auto 下1rem 左auto */
+      object-fit: contain; /* 保持圖片原始長寬比並完整顯示 */
+      loading: lazy;
+    }
+    .feature-box { /* 單個特色項目 */
       border: 1px solid var(--text-color-main);
       padding: 1rem;
       border-radius: 10px;
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: rgba(255, 255, 255, 0.05); /* 半透明背景 */
     }
-
     .feature-box h4 {
       color: var(--text-color-main);
       text-align: center;
     }
 
-    .faq-section { 
+    /* FAQ 和 注意事項 區塊共用樣式 */
+    .faq-section {
       padding: 2rem;
-      max-width: 800px;
-      margin: 0 auto 2rem auto; 
-      background-color: rgba(0, 0, 0, 0.4);
+      max-width: 800px; /* 最大寬度限制 */
+      margin: 0 auto 2rem auto; /* 水平置中並設定底部間距 */
+      background-color: rgba(0, 0, 0, 0.4); /* 半透明背景 */
       border-radius: 10px;
-      scroll-margin-top: 20px; /* Offset for fixed nav */
+      scroll-margin-top: 20px; /* 錨點偏移 */
     }
 
-    .faq-section .faq-main-title { 
+    /* FAQ 主標題 */
+    .faq-section .faq-main-title {
       font-size: 1.8rem;
       text-align: center;
       color: var(--text-color-main);
-      cursor: pointer;
-      margin-bottom: 1.5rem; 
+      cursor: pointer; /* 滑鼠指標為手型 */
+      margin-bottom: 1.5rem;
     }
-     .faq-section .faq-main-title .arrow {
-        display: inline-block;
-        margin-right: 0.3em;
-        transition: transform 0.3s ease;
-     }
-     .faq-section .faq-main-title.open .arrow {
-        transform: rotate(180deg);
-     }
+    .faq-section .faq-main-title .arrow { /* 箭頭圖示 */
+      display: inline-block;
+      margin-right: 0.3em;
+      transition: transform 0.3s ease; /* 旋轉動畫 */
+    }
+    .faq-section .faq-main-title.open .arrow { /* 展開時箭頭向上 */
+      transform: rotate(180deg);
+    }
 
-
+    /* FAQ 問題列表容器 (預設隱藏) */
     .faq-list-container {
       display: none;
     }
-    
+
+    /* FAQ 單個問答項目 */
     .faq-item {
       margin-bottom: 1rem;
     }
-
-.faq-item h4 {
-  cursor: pointer;
-  color:#F05E1C; 
-  display: flex;
-  align-items: center;       
-  justify-content: center;   
-  text-align: center; 
-}
-    .faq-item h4 .arrow {
-        display: inline-block;
-        margin-right: 0.3em;
-        transition: transform 0.3s ease;
+    .faq-item h4 { /* 問題標題 */
+      cursor: pointer;
+      color:var(--text-color-highlight);/* 特殊橘色 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
-    .faq-item h4.open .arrow {
-        transform: rotate(180deg);
+    .faq-item h4 .arrow { /* 問題標題旁的箭頭 */
+      display: inline-block;
+      margin-right: 0.3em;
+      transition: transform 0.3s ease;
     }
-
-    .faq-item p { 
+    .faq-item h4.open .arrow { /* 展開時箭頭向上 */
+      transform: rotate(180deg);
+    }
+    .faq-item p { /* 答案內容 (預設隱藏) */
       text-align: center;
       display: none;
       margin-top: 0.5rem;
       padding: 0 1em;
     }
 
+    /* 注意事項標題 */
     .notice-title {
       text-align: center;
-      font-size: 1.5rem; 
+      font-size: 1.5rem;
       color:var(--text-color-main);
       cursor: pointer;
     }
-     .notice-title .arrow {
-        display: inline-block;
-        margin-right: 0.3em;
-        transition: transform 0.3s ease;
-     }
-     .notice-title.open .arrow {
-        transform: rotate(180deg);
-     }
+    .notice-title .arrow {
+      display: inline-block;
+      margin-right: 0.3em;
+      transition: transform 0.3s ease;
+    }
+    .notice-title.open .arrow {
+      transform: rotate(180deg);
+    }
+    /* 注意事項內容 (預設隱藏) */
     .notice-content {
-      display: none; 
+      display: none;
       margin-top: 1rem;
     }
-    
+    /* 注意事項列表樣式 */
     .notice-content ol {
-  padding-left: 20px; /* 調整主列表的縮排 */
-  /* list-style-position: inside; */ /* 如果希望編號在文字區域內 */
-}
-.notice-content ol ol {
-  padding-left: 20px; /* 調整子列表相對於父列表的縮排 */
-  /* margin-top: 0.5em; */ /* 增加子列表和父列表項文字間的距離 */
-  /* margin-bottom: 0.5em; */
-}
-.notice-content li {
-  margin-bottom: 1em; /* 調整列表項之間的垂直間距 */
-  line-height: 1.6;   /* 調整行高，讓文字更易讀 */
-}
-/* 最後一個列表項通常不需要底部間距 */
-.notice-content li:last-child {
-    margin-bottom: 0;
-}
+      padding-left: 20px; /* 主列表縮排 */
+    }
+    .notice-content ol ol { /* 子列表樣式 */
+      padding-left: 20px; /* 子列表相對於父列表的縮排 */
+    }
+    .notice-content li {
+      margin-bottom: 1em; /* 列表項間距 */
+      line-height: 1.6;   /* 行高 */
+    }
+    .notice-content li:last-child {
+      margin-bottom: 0; /* 最後一項移除底部間距 */
+    }
+    
+    .notice-highlight {
+      color: var(--text-color-highlight);
+      font-weight: 650;
+    }
 
-
+    /* 中間過場區塊 */
     .mid {
       text-align: center;
       padding: 2rem;
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
       color: var(--text-color-secondary);
-      background: url('https://i.ibb.co/nN9PFfwn/BG-2.webp') center/cover no-repeat;
+      background: url('https://i.ibb.co/nN9PFfwn/BG-2.webp') center/cover no-repeat; /* 背景圖 */
       background-size: cover;
       background-position: center;
-      scroll-margin-top: 20px; /* Offset for fixed nav */
+      scroll-margin-top: 20px; /* 錨點偏移 */
     }
-    .mid h3 { 
-        color: var(--text-color-secondary);
+    .mid h3 {
+      color: var(--text-color-secondary); /* 確保此處文字顏色不受父元素影響 */
     }
 
+    /* 主辦單位資訊 */
     .organizer-info {
       text-align: center;
       padding: 3rem 1rem;
       color: var(--text-color-secondary);
       margin-bottom: 0;
-      scroll-margin-top: 20px; /* Offset for fixed nav */
+      scroll-margin-top: 20px; /* 錨點偏移 */
     }
     .organizer-info .organizer-label {
-      font-size: 1.0rem; 
-      color: var(--text-color-secondary); 
+      font-size: 1.0rem;
+      color: var(--text-color-secondary);
       margin-bottom: 0.5rem;
       font-weight: normal;
     }
-    .organizer-info h3 { 
-      color: var(--text-color-main); 
-      font-size: 1.6rem; 
-      margin-top: 0; 
-      margin-bottom: 1.5rem; 
+    .organizer-info h3 {
+      color: var(--text-color-main);
+      font-size: 1.6rem;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
       font-weight: bold;
     }
+    /* 社群媒體連結 */
     .social-links {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 1.5rem; /* Reduced gap for image icons */
+      gap: 1.5rem; /* 圖示間距 */
     }
     .social-links a {
       display: inline-block;
       transition: transform 0.2s ease;
     }
     .social-links a:hover {
-      transform: scale(1.1); /* Simple hover for images */
+      transform: scale(1.1); /* 滑鼠懸停放大圖示 */
     }
-    .social-links img { /* Style for new image icons */
-      width: 32px; 
+    .social-links img { /* 社群圖示大小 */
+      width: 32px;
       height: 32px;
-      object-fit: contain;
+      object-fit: contain; /* 保持圖示比例 */
     }
 
+    /* 頁尾 */
     footer {
       text-align: center;
       padding: 2rem;
       color: var(--text-color-secondary);
-      background: url('https://i.ibb.co/9k4M0HbC/BG-1.webp') center/cover no-repeat;
+      background: url('https://i.ibb.co/9k4M0HbC/BG-1.webp') center/cover no-repeat; /* 背景圖 */
       background-size: cover;
       background-position: center;
     }
-
-    .footer-btn {
+    .footer-btn { /* 頁尾預約按鈕 */
       display: inline-block;
       margin-top: 1rem;
       padding: 0.75rem 1.5rem;
@@ -467,26 +470,27 @@
       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
       transition: background-color 0.3s ease, transform 0.2s ease;
     }
-
     .footer-btn:hover {
       background-color: #e0aa2e;
       transform: scale(1.05);
     }
 
-    /* 平板橫向優化 */
+    /* --- 響應式設計 (RWD) --- */
+
+    /* 平板橫向優化 (768px - 1034px) */
     @media screen and (min-device-width: 768px) and (max-device-width: 1034px) and (orientation: landscape) {
-      .floating-btn {
-        bottom: 120px; 
-        right: 24px; 
+      .floating-btn { /* 調整浮動按鈕位置，避免與瀏覽器 UI衝突 */
+        bottom: 120px;
+        right: 24px;
       }
     }
 
-    /* 手機版優化 */
+    /* 手機版優化 (最大寬度 768px) */
     @media (max-width: 768px) {
       html {
-        font-size: calc(14px * var(--text-scale));
+        font-size: calc(14px * var(--text-scale)); /* 縮小基本字體 */
       }
-      .toc-toggle {
+      .toc-toggle { /* 縮小目錄按鈕 */
         width: 40px;
         height: 40px;
         padding: 8px;
@@ -495,7 +499,7 @@
         width: 18px;
         height: 2px;
       }
-      .toc-menu {
+      .toc-menu { /* 調整目錄選單 */
         top: 50px;
         width: 160px;
       }
@@ -503,93 +507,61 @@
         font-size: 0.85rem;
         padding: 8px 15px;
       }
-
-
-      .floating-btn {
+      .floating-btn { /* 調整浮動按鈕大小與位置 */
         width: 60px;
         height: 60px;
-        font-size: 0.7rem; 
-        bottom: 120px; 
-        right: 15px; 
+        font-size: 0.7rem;
+        bottom: 120px; /* 提高位置以避開手機底部操作欄 */
+        right: 15px;
       }
-      
-      .hero-text h1 {
-        font-size: 2.8rem;
-      }
-
-      .hero-text h2 {
-        font-size: 1rem;
-      }
-      
-      footer h2 {
-        font-size: 1.3rem;
-      } 
-
-      .section {
-        flex-direction: column !important;
+      .hero-text h1 { font-size: 3.2rem; }
+      .hero-text h2 { font-size: 1rem; }
+      footer h2 { font-size: 1.3rem; }
+      .section { /* 內容區塊改為垂直排列 */
+        flex-direction: column !important; /* 強制垂直排列 */
         padding: 2rem 1rem;
       }
-
       .section img,
-      .section .text {
+      .section .text { /* 圖片與文字區塊佔滿寬度 */
         max-width: 100% !important;
-        flex: unset;
+        flex: unset; /* 取消 flex 彈性設定 */
       }
-      .organizer-info .organizer-label {
-        font-size: 0.9rem;
-      }
-      .organizer-info h3 {
-        font-size: 1.4rem;
-      }
-      .social-links img {
-        width: 28px; 
-        height: 28px;
-      }
-      .faq-section .faq-main-title {
-        font-size: 1.6rem;
-      }
-      .notice-title {
-        font-size: 1.3rem;
-      }
+      .organizer-info .organizer-label { font-size: 0.9rem; }
+      .organizer-info h3 { font-size: 1.4rem; }
+      .social-links img { width: 28px; height: 28px; } /* 縮小社群圖示 */
+      .faq-section .faq-main-title { font-size: 1.6rem; }
+      .notice-title { font-size: 1.3rem; }
     }
 
-    /* 超小螢幕優化 */
+    /* 超小螢幕優化 (最大寬度 480px) */
     @media (max-width: 480px) {
       .floating-btn {
         width: 55px;
         height: 55px;
-        font-size: 0.65rem; 
-        bottom: 100px; 
-        right: 10px; 
-      }
-       .social-links img {
-        width: 24px; 
-        height: 24px;
-      }
-      .social-links {
-        gap: 1rem;
-      }
-      .toc-nav {
-        top: 10px;
+        font-size: 0.65rem;
+        bottom: 100px;
         right: 10px;
       }
+      .social-links img { width: 24px; height: 24px; }
+      .social-links { gap: 1rem; } /* 縮小社群圖示間距 */
+      .toc-nav { top: 10px; right: 10px; } /* 微調目錄導覽位置 */
     }
 
     /* iPhone Safari 底部工具列優化 */
+    /* 針對特定 iPhone Safari 瀏覽器，進一步調整浮動按鈕位置 */
     @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
       .floating-btn {
-        bottom: 140px; 
+        bottom: 140px; /* 預留更多空間給 Safari 底部工具列 */
       }
     }
 
-    /* 圖片載入動畫 */
+    /* 圖片載入時的佔位符動畫 (骨架屏效果) */
     .loading-placeholder {
       background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
       background-size: 200% 100%;
       animation: loading 1.5s infinite;
     }
-
-    @keyframes loading {
+    @keyframes loading { /* 漸變背景移動動畫 */
       0% { background-position: 200% 0; }
       100% { background-position: -200% 0; }
     }
@@ -597,7 +569,7 @@
 </head>
 <body>
 
-  <!-- Table of Contents Navigation -->
+  <!-- 目錄導覽列 -->
   <nav class="toc-nav" id="tocNav">
     <button class="toc-toggle" aria-label="目錄" aria-expanded="false" aria-controls="tocMenuList">
       <span></span><span></span><span></span>
@@ -614,12 +586,12 @@
     </ul>
   </nav>
 
-  <!-- 浮動按鈕 -->
+  <!-- 浮動預約按鈕 -->
   <a href="https://lihi.cc/z2qAk/mwlarpcom" class="floating-btn" target="_blank" id="bookingBtn">立即<br>預約</a>
 
-  <!-- Hero Section -->
+  <!-- Hero 橫幅區塊 -->
   <section class="hero-text" id="hero">
-    <img src="https://i.ibb.co/0ptbMj5s/HT-logo.webp" alt="LOGO" loading="eager" class="hero-logo" />
+    <img src="https://i.ibb.co/0ptbMj5s/HT-logo.webp" alt="花月酒店LOGO" loading="eager" class="hero-logo" /> <!-- eager: 優先載入此圖片 -->
     <h1>花月酒店謀殺案</h1>
     <h2>【期間限定，沉浸式實境遊戲】</h2>
     <p>
@@ -628,77 +600,81 @@
     </p>
     <h3>「乾杯！」</h3>
   </section>
-  
-  <!-- 活動介紹 - 花月酒店 -->
+
+  <!-- 故事背景 - 花月酒店 -->
   <section class="section" id="story-intro">
-    <img src="https://i.ibb.co/60VWgs2m/HT-M.webp" alt="花月酒店場景" loading="lazy" /> <!-- Corrected Image -->
+    <img src="https://i.ibb.co/60VWgs2m/HT-M.webp" alt="花月酒店場景圖" loading="lazy" />
     <div class="text">
       <h3>花月酒店</h3>
       <p>
         花月，一間座落於七條通的日式酒店，來到這裡的客人除了來喝酒之外，更是來享受那一份不明說的曖昧。<br>
         然而，在這紙醉金迷之中，一道慘叫聲打破了這令人陶醉的氛圍——<br>
         花月酒店的媽媽桑，琳達，被人發現死在了花月的後巷！<br><br>
-        <strong style="color:#F05E1C;font-size: 19px;">兇手究竟會是誰？</strong>
+        <strong style="color:var(--text-color-highlight);font-size: 19px;">兇手究竟會是誰？</strong>
       </p>
     </div>
   </section>
 
-  <!-- 活動介紹 - 大型實境推理 -->
-  <section class="section" id="story-details"> <!-- Added ID for potential more granular linking -->
-    <img src="https://i.ibb.co/JwYjDfFm/HT-F1.webp" alt="大型實境推理情境" loading="lazy" />
+  <!-- 遊戲特色 - 大型實境推理 -->
+  <section class="section" id="story-details">
+    <img src="https://i.ibb.co/JwYjDfFm/HT-F1.webp" alt="大型實境推理情境圖" loading="lazy" />
     <div class="text">
       <h3>大型實境推理</h3>
       <p>
         「我記得她跟媽媽桑鬧得很不愉快……」<br>
         「兇手是他吧……畢竟發生了那種事……」<br>
         「她會有這個下場我一點都不意外。」<br><br>
-        <strong style="color:#F05E1C;font-size: 19px;"> 和同場演員一起痛快飆戲！</strong>
+        <strong style="color:var(--text-color-highlight);font-size: 19px;"> 和同場演員一起痛快飆戲！</strong> <!--   為空格 -->
       </p>
     </div>
   </section>
 
+  <!-- 中間過場文字區塊 -->
   <section class="mid">
     <h3>整條街上議論紛紛，<br>你們決定往花月的大門口走去。</h3>
     <h3>但目的並不是消費，<br>而是調查整起殺人事件背後的真相……</h3>
   </section>
 
+  <!-- 遊戲特色項目列表 -->
   <section class="features" id="features-section">
     <div class="feature-box">
-      <img src="https://i.ibb.co/xKf91rDD/save-time.png" class="features-icon"  loading="lazy" />
+      <img src="https://i.ibb.co/xKf91rDD/save-time.png" class="features-icon" alt="專屬時段圖示" loading="lazy" />
       <h4>◆ 專屬時段、封館互動 ◆</h4>
       <p>105分鐘驚喜不斷，讓每位來酒店的貴賓一起深入體驗遊戲，創造不同的回憶。</p>
     </div>
     <div class="feature-box">
-      <img src="https://i.ibb.co/1CYvDdp/celebrity.png" class="features-icon"  loading="lazy" />
+      <img src="https://i.ibb.co/1CYvDdp/celebrity.png" class="features-icon" alt="特殊劇目圖示" loading="lazy" />
       <h4>◆ 特殊劇目演出 ◆</h4>
       <p>追加特殊劇情，滿足對花月日式酒店的各種想像。更讓您身歷其境，CP嗑好嗑滿。</p>
     </div>
     <div class="feature-box">
-      <img src="https://i.ibb.co/1GfD5dXR/gift.png" class="features-icon"  loading="lazy" />
+      <img src="https://i.ibb.co/1GfD5dXR/gift.png" class="features-icon" alt="限定禮物圖示" loading="lazy" />
       <h4>◆ 限定版紀念小禮物 ◆</h4>
       <p>當天有來酒店消費的貴賓，都會獲得花月專屬紀念精美小禮物。</p>
     </div>
     <div class="feature-box">
-      <img src="https://i.ibb.co/xS3qK2jZ/alcohol.png" class="features-icon"  loading="lazy" />
+      <img src="https://i.ibb.co/xS3qK2jZ/alcohol.png" class="features-icon" alt="特調飲品圖示" loading="lazy" />
       <h4>◆ 花月特調&無酒精威士忌暢飲 ◆</h4>
       <p>每位貴賓都會擁有一杯當日限定的花月特調，現場也會提供無酒精威士忌(麥茶)，歡迎盡情享受這美好的一晚。</p>
     </div>
   </section>
 
+  <!-- 活動資訊 -->
   <section class="section" id="activity-info">
-    <img src="https://i.ibb.co/Y7T6d7Df/HT-F2.webp" loading="lazy" alt="活動資訊圖示" /> <!-- Corrected Image -->
+    <img src="https://i.ibb.co/Y7T6d7Df/HT-F2.webp" loading="lazy" alt="活動資訊示意圖" />
     <div class="text">
       <h3>活動資訊</h3>
       <p>
         <strong>遊戲時長：</strong>105 分鐘（含報到及遊戲時間）<br>
         <strong>玩家人數：</strong>1 - 6 人 / 組<br>
-        <strong>適合年齡：</strong>16歲以上<br>&emsp; &emsp; &emsp; &emsp; 未滿16歲需家長陪同<br>&emsp; &emsp; &emsp; &emsp; 不開放12歲以下遊玩
+        <strong>適合年齡：</strong>16歲以上<br>        未滿16歲需家長陪同<br>        不開放12歲以下遊玩
       </p>
     </div>
   </section>
 
+  <!-- 售票資訊 -->
   <section class="section" id="ticket-info">
-    <img src="https://i.ibb.co/4w8FWxL9/MAIN.webp" loading="lazy" alt="售票資訊圖示" /> <!-- Corrected Image -->
+    <img src="https://i.ibb.co/4w8FWxL9/MAIN.webp" loading="lazy" alt="售票資訊主視覺圖" />
     <div class="text">
       <h3>售票資訊</h3>
       <p>
@@ -712,11 +688,10 @@
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- 常見問題 (FAQ) -->
   <section class="faq-section" id="mainFaqSection">
-    <h4 class="faq-main-title"><span class="arrow">▽</span>&ensp;常見問題&ensp;  <span class="arrow">▽</span></h4>
-    <div class="faq-list-container">
-      
+    <h4 class="faq-main-title"><span class="arrow">▽</span> 常見問題   <span class="arrow">▽</span></h4>
+    <div class="faq-list-container"> <!-- 此容器預設隱藏，由JS控制顯示 -->
       <div class="faq-item">
         <h4><span class="arrow">▽</span> Q: 遊戲要怎麼玩呢？</h4>
         <p> A: 玩家會於行前收到遊戲說明影片，並於活動當天報到時領取遊戲解謎包。透過觀察現場資訊以及與演員互動取得相應的線索，藉此推理出本次案件的真相。詳細遊戲規則可見行前說明影片及遊戲解謎包內的說明。</p>
@@ -736,7 +711,7 @@
       <div class="faq-item">
         <h4><span class="arrow">▽</span> Q: 可以帶小孩一起玩嗎？</h4>
         <p> A: 遊戲內容涉及成人議題，不開放12歲以下玩家一同參與遊戲。</p>
-      </div>      
+      </div>
       <div class="faq-item">
         <h4><span class="arrow">▽</span> Q: 遊戲當天要怎麼報到呢？</h4>
         <p> A: 已於網路預訂成功的玩家，請於當天至遊戲現場報到處，提供訂位人姓名及電話，資料核對無誤後便可以準備進行遊戲囉！</p>
@@ -764,15 +739,15 @@
     </div>
   </section>
 
-  <!-- 注意事項 -->
-  <section class="faq-section" id="noticesSection">
-    <h4 class="notice-title"><span class="arrow">▽</span>&ensp;遊戲注意事項&ensp;<span class="arrow">▽</span></h4>
-    <div class="notice-content">
+  <!-- 遊戲注意事項 -->
+  <section class="faq-section" id="noticesSection"> <!-- 注意事項區塊也套用 faq-section 的部分樣式 -->
+    <h4 class="notice-title"><span class="arrow">▽</span> 遊戲注意事項 <span class="arrow">▽</span></h4>
+    <div class="notice-content"> <!-- 此容器預設隱藏，由JS控制顯示 -->
       <ol>
-        <li>網頁上顯示的金額為遊戲費用全額，除早鳥優惠以外，不適用任何優惠。請於訂場後<span style="color:#F05E1C">24小時內</span>支付，逾期則場次自動釋出不另行通知。</li>
+        <li>網頁上顯示的金額為遊戲費用全額，除早鳥優惠以外，不適用任何優惠。請於訂場後<span class="notice-highlight">24小時內</span>支付，逾期則場次自動釋出不另行通知。</li>
         <li>
           支付方式有兩種：
-          <ol type="A" style="margin-top: 0.5em; margin-bottom: 0.5em;"> <!-- 增加一點上下間距，讓子列表更清晰 -->
+          <ol type="A" style="margin-top: 0.5em; margin-bottom: 0.5em;">
             <li>
               信用卡線上刷卡<br>
               以「信用卡線上刷卡」支付時，需於付款頁面直接付款。如未於第一時間付款，為保護您的個資，系統付款頁面將不予保留，需「取消預約」後「重新預訂」，方能再次刷卡預約。（為保護您的訂位優先權益，建議第一時間支付，以免在退訂、重訂之時間差中，導致您的訂位保留權益受損喔！）
@@ -783,48 +758,47 @@
               付款完成後，系統將在30分鐘內寄送預約成功之電子郵件。
             </li>
           </ol>
-        </li>     
-        <li>預約網站所顯示之時間為遊戲開場時間，請務必<span style="color:#F05E1C">提前5-10分鐘</span>到現場完成報到手續，遲到入場將嚴重影響本次體驗，為不影響其他玩家的權益與整體流程，若於體驗開場後遲到抵達，將依工作人員的指示於特定時間點入場。</li>
+        </li>
+        <li>預約網站所顯示之時間為遊戲開場時間，請務必<span class="notice-highlight">提前5-10分鐘</span>到現場完成報到手續，遲到入場將嚴重影響本次體驗，為不影響其他玩家的權益與整體流程，若於體驗開場後遲到抵達，將依工作人員的指示於特定時間點入場。</li>
         <li>
           請務必詳加確認訂購場次及人數，訂購後如需更換、取消場次，請於時限內聯繫我們：
           <ol type="A" style="margin-top: 0.5em; margin-bottom: 0.5em;">
-            <li>更換場次：請於活動當日<span style="color:#F05E1C">『5天前』</span>聯繫我們。<br>
+            <li>更換場次：請於活動當日<span class="notice-highlight">『5天前』</span>聯繫我們。<br>
             例：6/20為活動日，6/15起即不受理更換場次，需於6/14(含)前提出申請。</li>
-            <li>取消場次：請於活動當日<span style="color:#F05E1C">『10天前』</span>聯繫我們，我們將<span style="color:#F05E1C">扣除10%金流手續費</span>後退還。<br>
+            <li>取消場次：請於活動當日<span class="notice-highlight">『10天前』</span>聯繫我們，我們將<span class="notice-highlight">扣除10%金流手續費</span>後退還。<br>
             例：6/20為活動日，6/10起即不受理取消場次，需於6/9(含)前提出申請。</li>
             <li>異動人數：不提供5人團體票補差額調整至6人團體票，亦不開放6人團體票調整為5人團體票之差額退款。如需異動人數，請於時限内取消場次後重新預訂。</li>
           </ol>
         </li>
-        <li>如需更換場次、取消場次及調整飲品數量，請<span style="color:#F05E1C">私訊臉書「謀殺衛斯理工作室」粉絲專頁</span>聯繫客服人員。如於系統上自行取消訂單，恕無法退還款項。此主題為特殊限定活動，無法變更為其他劇本殺場次。</li>
-        <li>活動當日如因非可究責主辦方之因素導致活動無法進行或提前中止（如同行玩家人數不符遊戲限制、遲到早退等），將<span style="color:#F05E1C">不予退還款項。</span>如因不可抗力等因素（如颱風、停電等），我們將暫停當日營業，並主動向您聯繫延期或退款事項。</li>
-        <li>遊戲過程中，<span style="color:#F05E1C">禁止玩家言語或肢體攻擊其他玩家或工作人員</span>，若發生以上狀況造成現場人員身心不適，謀殺衛斯理工作室有權直接終止遊戲，不予退還遊戲費用並保留追訴權。</li>
+        <li>如需更換場次、取消場次及調整飲品數量，請<span class="notice-highlight">私訊臉書「謀殺衛斯理工作室」粉絲專頁</span>聯繫客服人員。如於系統上自行取消訂單，恕無法退還款項。此主題為特殊限定活動，無法變更為其他劇本殺場次。</li>
+        <li>活動當日如因非可究責主辦方之因素導致活動無法進行或提前中止（如同行玩家人數不符遊戲限制、遲到早退等），將<span class="notice-highlight">不予退還款項</span>。如因不可抗力等因素（如颱風、停電等），我們將暫停當日營業，並主動向您聯繫延期或退款事項。</li>
+        <li>遊戲過程中，<span class="notice-highlight">禁止玩家言語或肢體攻擊其他玩家或工作人員</span>，若發生以上狀況造成現場人員身心不適，謀殺衛斯理工作室有權直接終止遊戲，不予退還遊戲費用並保留追訴權。</li>
       </ol>
     </div>
   </section>
-  
-    <footer>
+
+  <!-- 頁尾行動呼籲 (Call to Action) -->
+  <footer>
     <div style="text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);">
       <h2>乾杯！<br>敲響花月酒店的大門！</h2>
-      <h3>いらっしゃいませ！</h3>
+      <h3>いらっしゃいませ！</h3> <!-- 日文：歡迎光臨 -->
     </div>
     <a href="https://lihi.cc/z2qAk/mwlarpcom" target="_blank" class="footer-btn">立即預約</a>
   </footer>
-  
-  <!-- 主辦單位資訊 -->
+
+  <!-- 主辦單位資訊及聯絡方式 -->
   <section class="organizer-info" id="organizer-section">
     <p class="organizer-label">主辦單位</p>
     <h3>謀殺衛斯理工作室</h3>
     <div class="social-links">
       <a href="https://www.instagram.com/murderwesleylarp/" target="_blank" rel="noopener noreferrer" aria-label="謀殺衛斯理 Instagram">
-        
-        <img src="https://i.ibb.co/XZ7Q3vbj/instagram.png" alt="Instagram">
+        <img src="https://i.ibb.co/XZ7Q3vbj/instagram.png" alt="Instagram 圖示">
       </a>
       <a href="https://www.facebook.com/larpwesley/" target="_blank" rel="noopener noreferrer" aria-label="謀殺衛斯理 Facebook">
-        <img src="https://i.ibb.co/cKnTTJCN/facebook.png" alt="Facebook">
+        <img src="https://i.ibb.co/cKnTTJCN/facebook.png" alt="Facebook 圖示">
       </a>
       <a href="https://www.mwlarp.com/scenario/huayuejiudianmoushaan" target="_blank" rel="noopener noreferrer" aria-label="謀殺衛斯理 官方網站">
-        
-        <img src="https://i.ibb.co/WvvyqGDf/internet.png" alt="官方網站">
+        <img src="https://i.ibb.co/WvvyqGDf/internet.png" alt="官方網站 圖示">
       </a>
     </div>
     <a href="tel:+886-2-25221433">TEL：(02)2522-1433</a><br>
@@ -832,50 +806,58 @@
   </section>
 
   <script>
-    // 圖片懶載入優化
+    // 圖片延遲載入功能
+    // 雖然 HTML img 標籤已使用 loading="lazy" (瀏覽器原生懶載入)，
+    // 此處 JS 主要是用於控制圖片載入後的顯示效果 (例如透明度變化)
     function lazyLoadImages() {
-      const images = document.querySelectorAll('img[loading="lazy"]');
-      
-      if ('IntersectionObserver' in window) {
+      const images = document.querySelectorAll('img[loading="lazy"]'); // 選取所有設定為懶載入的圖片
+
+      if ('IntersectionObserver' in window) { // 檢查瀏覽器是否支援 IntersectionObserver API
         const imageObserver = new IntersectionObserver((entries, observer) => {
           entries.forEach(entry => {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting) { // 當圖片進入可視區域
               const img = entry.target;
-              if (img.dataset.src) {
-                img.src = img.dataset.src;
-              }
-              img.style.opacity = '1';
-              observer.unobserve(img);
+              // 如果有使用 data-src (目前HTML未使用，但保留此邏輯供未來擴展)
+              // if (img.dataset.src) {
+              //   img.src = img.dataset.src;
+              // }
+              img.style.opacity = '1'; // 將圖片設為完全可見 (配合 CSS 的 opacity: 0 初始設定)
+              observer.unobserve(img); // 停止觀察此圖片，避免重複觸發
             }
           });
         });
-        
+
         images.forEach(img => {
-          imageObserver.observe(img);
+          imageObserver.observe(img); // 開始觀察每個懶載入圖片
         });
       } else {
+        // 如果瀏覽器不支援 IntersectionObserver，則直接顯示所有圖片
+        // (現代瀏覽器通常都支援，此為備用方案)
         images.forEach(img => {
-          if (img.dataset.src) {
-            img.src = img.dataset.src;
-          }
+          // if (img.dataset.src) {
+          //   img.src = img.dataset.src;
+          // }
           img.style.opacity = '1';
         });
       }
     }
 
-    // --- TOC Navigation Logic ---
-    const tocToggle = document.querySelector('.toc-toggle');
-    const tocMenu = document.querySelector('.toc-menu');
-    const tocLinks = document.querySelectorAll('.toc-menu li a');
+    // --- 目錄導覽列 (TOC)互動邏輯 ---
+    const tocNav = document.getElementById('tocNav'); // 目錄導覽列容器
+    const tocToggle = document.querySelector('.toc-toggle'); // 目錄切換按鈕
+    const tocMenu = document.querySelector('.toc-menu'); // 目錄選單
+    const tocLinks = document.querySelectorAll('.toc-menu li a'); // 目錄中的所有連結
 
     if (tocToggle && tocMenu) {
+      // 點擊切換按鈕時，展開或收合目錄選單
       tocToggle.addEventListener('click', () => {
-        tocMenu.classList.toggle('active');
-        tocToggle.classList.toggle('active');
+        tocMenu.classList.toggle('active'); // 切換選單的 active class (控制顯示/隱藏)
+        tocToggle.classList.toggle('active'); // 切換按鈕的 active class (控制圖示變化)
         const isExpanded = tocMenu.classList.contains('active');
-        tocToggle.setAttribute('aria-expanded', isExpanded);
+        tocToggle.setAttribute('aria-expanded', isExpanded); // 設定 WAI-ARIA 屬性，提升無障礙性
       });
 
+      // 點擊目錄中的連結後，自動收合選單 (適用於單頁錨點連結)
       tocLinks.forEach(link => {
         link.addEventListener('click', () => {
           if (tocMenu.classList.contains('active')) {
@@ -885,10 +867,11 @@
           }
         });
       });
-      
-      // Close TOC if clicking outside
+
+      // 點擊目錄選單以外的區域時，自動收合選單
       document.addEventListener('click', (event) => {
-        if (!tocNav.contains(event.target) && tocMenu.classList.contains('active')) {
+        // 檢查點擊事件的目標是否在 tocNav 元素內部，且選單是展開的
+        if (tocNav && !tocNav.contains(event.target) && tocMenu.classList.contains('active')) {
             tocMenu.classList.remove('active');
             tocToggle.classList.remove('active');
             tocToggle.setAttribute('aria-expanded', 'false');
@@ -896,29 +879,38 @@
       });
     }
 
-
-    // --- FAQ Accordion Logic ---
+    // --- 手風琴 (Accordion) 效果邏輯 ---
+    /**
+     * 設定手風琴效果
+     * @param {string} sectionId - 手風琴區塊的 ID
+     * @param {string} titleSelector - 主標題的 CSS 選擇器 (用於觸發展開/收合列表)
+     * @param {string} contentContainerSelector - 內容列表容器的 CSS 選擇器
+     * @param {string} [itemSelector] - (可選) 列表內單個項目的 CSS 選擇器 (用於二級手風琴)
+     * @param {string} [itemTitleSelector] - (可選) 列表內單個項目標題的 CSS 選擇器 (用於觸發展開/收合項目內容)
+     * @param {string} [itemContentSelector] - (可選) 列表內單個項目內容的 CSS 選擇器
+     */
     function setupAccordion(sectionId, titleSelector, contentContainerSelector, itemSelector, itemTitleSelector, itemContentSelector) {
         const section = document.getElementById(sectionId);
-        if (!section) return;
+        if (!section) return; // 如果找不到區塊，則不執行
 
         const mainTitle = section.querySelector(titleSelector);
         const listContainer = section.querySelector(contentContainerSelector);
 
+        // 設定主標題點擊事件 (展開/收合整個列表)
         if (mainTitle && listContainer) {
             mainTitle.addEventListener('click', () => {
                 const isOpen = listContainer.style.display === 'block';
-                listContainer.style.display = isOpen ? 'none' : 'block';
-                mainTitle.classList.toggle('open', !isOpen);
-                // Arrow update already handled by .open class in CSS
+                listContainer.style.display = isOpen ? 'none' : 'block'; // 切換顯示狀態
+                mainTitle.classList.toggle('open', !isOpen); // 切換 .open class (用於箭頭圖示等樣式)
             });
         }
 
-        if (itemSelector) { // For two-level accordions like main FAQ
+        // 如果提供了項目選擇器，則設定二級手風琴 (展開/收合列表中的個別項目)
+        if (itemSelector && itemTitleSelector && itemContentSelector) {
             section.querySelectorAll(itemSelector + ' ' + itemTitleSelector).forEach((questionTitle) => {
                 questionTitle.addEventListener('click', () => {
-                    const answer = questionTitle.nextElementSibling;
-                    if (answer && answer.matches(itemContentSelector)) {
+                    const answer = questionTitle.nextElementSibling; // 假設內容元素緊跟在標題之後
+                    if (answer && answer.matches(itemContentSelector)) { // 確保是正確的內容元素
                         const isOpen = answer.style.display === 'block';
                         answer.style.display = isOpen ? 'none' : 'block';
                         questionTitle.classList.toggle('open', !isOpen);
@@ -928,15 +920,22 @@
         }
     }
 
-    // Setup for Main FAQ (two-level)
-    setupAccordion('mainFaqSection', '.faq-main-title', '.faq-list-container', '.faq-item', 'h4', 'p');
-    
-    // Setup for Notices (single-level, main title toggles content directly)
-    // The setupAccordion function is slightly more generic, so we'll use the direct selectors
+    // 初始化常見問題 (FAQ) 的手風琴效果 (二級手風琴)
+    setupAccordion(
+      'mainFaqSection',          // 區塊 ID
+      '.faq-main-title',         // 主標題選擇器 (點擊此標題展開 FAQ 列表)
+      '.faq-list-container',     // FAQ 列表容器選擇器
+      '.faq-item',               // 單個 FAQ 項目選擇器
+      'h4',                      // FAQ 問題標題選擇器 (點擊此標題展開答案)
+      'p'                        // FAQ 答案內容選擇器
+    );
+
+    // 初始化注意事項的手風琴效果 (一級手風琴)
+    // 注意：此處 setupAccordion 的後三個參數未使用，因為注意事項是單層展開
     const noticeSection = document.getElementById('noticesSection');
     if (noticeSection) {
-        const noticeTitle = noticeSection.querySelector('.notice-title');
-        const noticeContent = noticeSection.querySelector('.notice-content');
+        const noticeTitle = noticeSection.querySelector('.notice-title'); // 注意事項標題
+        const noticeContent = noticeSection.querySelector('.notice-content'); // 注意事項內容容器
         if (noticeTitle && noticeContent) {
             noticeTitle.addEventListener('click', () => {
                 const isOpen = noticeContent.style.display === 'block';
@@ -946,29 +945,31 @@
         }
     }
 
+    // --- 浮動預約按鈕顯示/隱藏控制 ---
+    const bookingBtn = document.getElementById('bookingBtn'); // 浮動按鈕
+    const pageFooter = document.querySelector('footer'); // 頁尾元素
 
-    // 浮動按鈕控制
-    const btn = document.getElementById('bookingBtn');
-    const pageFooter = document.querySelector('footer'); 
-
-    if (btn && pageFooter) {
+    if (bookingBtn && pageFooter) {
+      // 使用 IntersectionObserver 監測頁尾是否進入可視區域
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            btn.classList.add('hidden');
-          } else {
-            btn.classList.remove('hidden');
+          if (entry.isIntersecting) { // 如果頁尾可見 (表示已滾動到頁面底部)
+            bookingBtn.classList.add('hidden'); // 隱藏浮動按鈕
+          } else { // 如果頁尾不可見
+            bookingBtn.classList.remove('hidden'); // 顯示浮動按鈕
           }
         });
       }, {
-        threshold: 0.05 
+        threshold: 0.05 // 當頁尾元素 5% 進入或離開可視區域時觸發回調
       });
-      observer.observe(pageFooter);
+      observer.observe(pageFooter); // 開始觀察頁尾元素
     }
 
-    // 初始化
+    // --- DOMContentLoaded 事件監聽 ---
+    // 確保在 HTML 文件完全載入並解析完成後才執行 JavaScript 程式碼
     document.addEventListener('DOMContentLoaded', () => {
-      lazyLoadImages();
+      lazyLoadImages(); // 初始化圖片懶載入功能
+      // 其他需要在 DOM 載入後執行的初始化程式碼可以放在這裡
     });
   </script>
 </body>
