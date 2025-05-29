@@ -157,7 +157,7 @@
     .floating-btn {
       position: fixed; /* 固定在視窗右下方 */
       right: 24px;
-      top: 85%;
+      bottom: 24px;
       width: 70px;
       height: 70px;
       background-color: #F7C242; /* 主黃色 */
@@ -479,8 +479,7 @@
     /* 平板橫向優化 (768px - 1034px) */
     @media screen and (min-device-width: 768px) and (max-device-width: 1034px) and (orientation: landscape) {
       .floating-btn { /* 調整浮動按鈕位置，避免與瀏覽器 UI衝突 */
-        /*bottom: 120px;*/
-        top: 85%;
+        bottom: 120px;
         right: 24px;
       }
     }
@@ -511,9 +510,8 @@
         width: 60px;
         height: 60px;
         font-size: 1rem;
-        /*bottom: 120px;*/ /* 提高位置以避開手機底部操作欄 */
+        bottom: 120px; /* 提高位置以避開手機底部操作欄 */
         right: 15px;
-        top: 85%;
       }
       .hero-text h1 { font-size: 3.2rem; }
       .hero-text h2 { font-size: 1rem; }
