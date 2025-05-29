@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   
   <!-- 預載入關鍵圖片 -->
-  <link rel="preload" as="image" href="https://i.ibb.co/LdmJgdgc/WEB-BG2.webp" />
+  <link rel="preload" as="image" href="https://i.ibb.co/m7KPpNT/WEB-BG.webp" />
   <link rel="preload" as="image" href="https://i.ibb.co/0ptbMj5s/HT-logo.webp" />
   <link rel="preload" as="image" href="https://i.ibb.co/4w8FWxL9/MAIN.webp" />
   
@@ -181,28 +181,51 @@
       pointer-events: none;
     }
 
+    .hero-logo {
+      width: 12vh; /* 從內聯樣式移過來 */
+      margin-bottom: 1rem; /* 調整LOGO圖片下方的間距，您可以修改這個值，例如 20px, 1rem, 2vh 等 */
+      margin-top: 2rem; /* 如果需要調整LOGO圖片上方的間距，取消註解並修改此值 */
+    }
+
     .hero-text {
       position: relative;
       padding: 2rem;
       text-align: center;
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-      /* margin-top: var(--nav-height); If body had padding-top */
     }
 
     .hero-text h1 {
       font-family: 'Noto Serif TC', serif;
       font-size: 4rem;
       color: var(--text-color-main);
-      margin-bottom: 0.8rem;
+      margin-top: 0; 
+      margin-bottom: 1rem;
       font-weight: 800;
     }
 
     .hero-text h2 {
       font-size: 1.25rem;
       color: var(--text-color-secondary);
-      margin-top: 0;
+      margin-top: 0; 
+      margin-bottom: 1rem; 
+      letter-spacing: 0.3em; 
     }
-
+    
+    .hero-text h3 {
+      font-size: 1.1rem;
+      color: var(--text-color-secondary);
+      margin-top: 0; 
+      margin-bottom: 1rem; 
+      letter-spacing: 0.2em; 
+    }
+    .hero-text p {
+      font-size:1rem;
+      color: var(--text-color-secondary);
+      margin-top: 0; 
+      margin-bottom: 1rem; 
+      letter-spacing: 0.08em; 
+    }
+    
     .section {
       display: flex;
       flex-wrap: wrap;
@@ -252,6 +275,14 @@
       padding: 2rem;
       scroll-margin-top: 20px; /* Offset for fixed nav */
     }
+.features-icon {
+  display: block; /* 將圖片設為區塊元素，才能使用 margin: auto 進行水平置中 */
+  width: 70px;    /* 設定一個固定的寬度，您可以根據視覺效果調整此數值 */
+  height: 70px;   /* 設定一個固定的高度，使圖示區域為方形。如果圖示非方形，可只設寬度，讓高度自動調整，或調整此值 */
+  margin: 0 auto 1rem auto; 
+  object-fit: contain; /* 確保圖示內容完整顯示於指定區域內，並保持其原始長寬比，不會被裁切 */
+  loading: lazy; 
+}
 
     .feature-box {
       border: 1px solid var(--text-color-main);
@@ -262,6 +293,7 @@
 
     .feature-box h4 {
       color: var(--text-color-main);
+      text-align: center;
     }
 
     .faq-section { 
@@ -482,7 +514,7 @@
       }
       
       .hero-text h1 {
-        font-size: 2rem;
+        font-size: 2.8rem;
       }
 
       .hero-text h2 {
@@ -587,7 +619,7 @@
 
   <!-- Hero Section -->
   <section class="hero-text" id="hero">
-    <img src="https://i.ibb.co/0ptbMj5s/HT-logo.webp" style="width:10vh" alt="LOGO" loading="eager" />
+    <img src="https://i.ibb.co/0ptbMj5s/HT-logo.webp" alt="LOGO" loading="eager" class="hero-logo" />
     <h1>花月酒店謀殺案</h1>
     <h2>【期間限定，沉浸式實境遊戲】</h2>
     <p>
@@ -632,19 +664,23 @@
 
   <section class="features" id="features-section">
     <div class="feature-box">
-      <h4>◆ 專屬時段、封館互動</h4>
+      <img src="https://i.ibb.co/xKf91rDD/save-time.png" class="features-icon"  loading="lazy" />
+      <h4>◆ 專屬時段、封館互動 ◆</h4>
       <p>105分鐘驚喜不斷，讓每位來酒店的貴賓一起深入體驗遊戲，創造不同的回憶。</p>
     </div>
     <div class="feature-box">
-      <h4>◆ 特殊劇目演出</h4>
+      <img src="https://i.ibb.co/1CYvDdp/celebrity.png" class="features-icon"  loading="lazy" />
+      <h4>◆ 特殊劇目演出 ◆</h4>
       <p>追加特殊劇情，滿足對花月日式酒店的各種想像。更讓您身歷其境，CP嗑好嗑滿。</p>
     </div>
     <div class="feature-box">
-      <h4>◆ 限定版紀念小禮物</h4>
+      <img src="https://i.ibb.co/1GfD5dXR/gift.png" class="features-icon"  loading="lazy" />
+      <h4>◆ 限定版紀念小禮物 ◆</h4>
       <p>當天有來酒店消費的貴賓，都會獲得花月專屬紀念精美小禮物。</p>
     </div>
     <div class="feature-box">
-      <h4>◆ 花月特調&無酒精威士忌暢飲</h4>
+      <img src="https://i.ibb.co/xS3qK2jZ/alcohol.png" class="features-icon"  loading="lazy" />
+      <h4>◆ 花月特調&無酒精威士忌暢飲 ◆</h4>
       <p>每位貴賓都會擁有一杯當日限定的花月特調，現場也會提供無酒精威士忌(麥茶)，歡迎盡情享受這美好的一晚。</p>
     </div>
   </section>
@@ -678,7 +714,7 @@
 
   <!-- FAQ -->
   <section class="faq-section" id="mainFaqSection">
-    <h4 class="faq-main-title"><span class="arrow">▽</span>  常見問題  <span class="arrow">▽</span></h4>
+    <h4 class="faq-main-title"><span class="arrow">▽</span>&ensp;常見問題&ensp;  <span class="arrow">▽</span></h4>
     <div class="faq-list-container">
       
       <div class="faq-item">
@@ -730,7 +766,7 @@
 
   <!-- 注意事項 -->
   <section class="faq-section" id="noticesSection">
-    <h4 class="notice-title"><span class="arrow">▽</span>  遊戲注意事項  <span class="arrow">▽</span></h4>
+    <h4 class="notice-title"><span class="arrow">▽</span>&ensp;遊戲注意事項&ensp;<span class="arrow">▽</span></h4>
     <div class="notice-content">
       <ol>
         <li>網頁上顯示的金額為遊戲費用全額，除早鳥優惠以外，不適用任何優惠。請於訂場後<span style="color:#F05E1C">24小時內</span>支付，逾期則場次自動釋出不另行通知。</li>
