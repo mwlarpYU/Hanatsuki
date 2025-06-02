@@ -334,7 +334,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
+      text-align: center
     }
     .faq-item h4 .arrow { /* 問題標題旁的箭頭 */
       display: inline-block;
@@ -684,6 +684,7 @@
         <b>&ensp;‧2025/6/28 (六)：</b><br>
         &emsp;&emsp;13:00、14:45、16:30、19:15、21:00<br><br>
         <strong>遊戲費用：</strong><br>
+        單人票&emsp;&emsp;&ensp;700元<a href="#single" id="jumpToSingleFaq">&ensp;*將與其他玩家併組</a><br>
         5人團體票 2,600元（未滿5人亦可遊玩）<br>
         6人團體票 3,000元
       </p>
@@ -737,6 +738,14 @@
       <div class="faq-item">
         <h4><span class="arrow">▽</span> Q: 如果我們超過6個人，還可以同一組進行遊戲嗎？</h4>
         <p> A: 因遊戲人數上限無法更動，建議可拆成兩組相互競賽也非常有趣唷！</p>
+      </div>
+       <div class="faq-item" id="single">
+        <h4><span class="arrow">▽</span> Q: 如果購買的是複數張單人票，會被拆組進行遊戲嗎？</h4>
+        <p> A: 單人票將與其他玩家併組進行遊戲。可於購買時填寫同行玩家（單人票）之預約姓名，將優先安排併組。若玩家希望能保證同組進行遊戲，建議直接購買團體票喔！</p>
+      </div>
+       <div class="faq-item">
+        <h4><span class="arrow">▽</span> Q: 如果購買的是5人組團體票，會併入單人票玩家進行遊戲嗎？</h4>
+        <p> A: 團體票玩家不會與他人併組喔！</p>
       </div>
     </div>
   </section>
@@ -974,5 +983,41 @@
       // 其他需要在 DOM 載入後執行的初始化程式碼可以放在這裡
     });
   </script>
+    <script>
+  window.addEventListener('hashchange', function() {
+  const hash = window.location.hash; // 例如 "#single"
+  if (hash) {
+    const targetElement = document.getElementById(hash.substring(1)); // 移除 '#' 號
+    if (targetElement && targetElement.closest('.faq-list-container')) {
+      const faqListContainer = targetElement.closest('.faq-list-container');
+      const mainFaqSection = faqListContainer.closest('.faq-section');
+      const faqMainTitle = mainFaqSection ? mainFaqSection.querySelector('.faq-main-title') : null;
+
+      // 展開主 FAQ 列表
+      if (faqListContainer.style.display !== 'block' && faqMainTitle) {
+        faqListContainer.style.display = 'block';
+        faqMainTitle.classList.add('open');
+      }
+
+      // 展開目標 FAQ 項目
+      if (targetElement.classList.contains('faq-item')) {
+        const targetFaqItemTitle = targetElement.querySelector('h4');
+        const targetFaqItemContent = targetElement.querySelector('p');
+        if (targetFaqItemTitle && targetFaqItemContent && targetFaqItemContent.style.display !== 'block') {
+          targetFaqItemContent.style.display = 'block';
+          targetFaqItemTitle.classList.add('open');
+        }
+        // 確保元素可見後再滾動一次 (有時瀏覽器初始跳轉不完美)
+        setTimeout(() => {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100); // 短暫延遲
+      }
+    }
+  }
+});
+
+// 頁面載入時也檢查一次 hash，處理直接帶 hash 訪問的情況
+window.dispatchEvent(new Event('hashchange'));
+    </script>
 </body>
 </html>
