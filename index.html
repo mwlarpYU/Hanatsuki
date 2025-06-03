@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>花月酒店謀殺案沉浸式實境遊戲-謀殺衛斯理</title>
   <meta name="description" content="置身《花月酒店謀殺案》的迷離氛圍，體驗謀殺衛斯理工作室最新沉浸式實境推理遊戲。您將親自調查，與演員飆戲，解開謎團。限定場次，立即預約，揭開花月酒店的秘密！" />
@@ -27,117 +27,109 @@
       --font-family: 'Noto Sans TC', serif; /* 主要字體 */
       --font-weight: 500; /* 主要字重 */
       --text-scale: 1; /* 文字縮放基礎值 */
-      /* --nav-height: 60px; */ /* 導覽列高度，若導覽列為固定實體條時，可用於 body padding */
     }
 
     html {
-      font-size: calc(16px * var(--text-scale)); /* 基本字體大小，可隨 --text-scale 調整 */
-      scroll-behavior: smooth; /* 啟用平滑捲動效果 */
+      font-size: calc(16px * var(--text-scale));
+      scroll-behavior: smooth;
     }
 
     html, body {
       width: 100%;
-      overflow-x: hidden; /* 防止水平滾動條出現 */
+      overflow-x: hidden;
     }
 
-    /* 全局背景圖層 (固定於視窗，隨內容滾動) */
     body::before {
       content: "";
-      position: fixed; /* 固定定位，使其不隨頁面滾動 */
+      position: fixed;
       top: 0; left: 0;
-      width: 100vw; /* 視窗寬度 */
-      height: 100vh; /* 視窗高度 */
+      width: 100vw;
+      height: 100vh;
       background-image: url('https://i.ibb.co/LdmJgdgc/WEB-BG2.webp');
-      background-size: 100% auto; /* 背景圖寬度填滿，高度自動 */
+      background-size: 100% auto;
       background-repeat: no-repeat;
-      background-position: top center; /* 背景圖置頂中對齊 */
-      background-attachment: scroll; /* 背景圖隨內容滾動 (若要固定則用 fixed) */
-      z-index: -1; /* 將背景圖層置於最底層 */
+      background-position: top center;
+      background-attachment: scroll;
+      z-index: -1;
     }
 
     body {
       margin: 0;
       font-family: var(--font-family);
       color: var(--text-color-secondary);
-      position: relative; /* 設定相對定位，作為 ::before 定位的基準 */
-      background-color: #050d1a; /* 若背景圖未載入時的備用背景色 */
-      min-height: 100vh; /* 最小高度為視窗高度 */
-      /* padding-top: var(--nav-height); */ /* 若導覽列為固定實體條時的頂部內距 */
+      position: relative;
+      background-color: #050d1a;
+      min-height: 100vh;
     }
 
     a {
       color: var(--text-color-main);
-      text-decoration: none; /* 移除連結底線 */
+      text-decoration: none;
     }
 
-    /* 通用段落樣式 */
     .text p {
-      padding-left: 3em; /* 段落左內縮 */
-      text-align: left; /* 文字靠左對齊 */
-      padding-right: 3em; /* 段落右內縮 */
+      padding-left: 3em;
+      text-align: left;
+      padding-right: 3em;
     }
 
-    /* 目錄導覽列 (TOC) */
     .toc-nav {
-      position: fixed; /* 固定在視窗右上方 */
+      position: fixed;
       top: 15px;
       right: 15px;
-      z-index: 1001; /* 層級高於浮動按鈕 */
+      z-index: 1001;
     }
 
-    /* 目錄切換按鈕 (漢堡選單圖示) */
     .toc-toggle {
-      background-color: rgba(247, 194, 66, 0.85); /* 主黃色，略透明 */
+      background-color: rgba(247, 194, 66, 0.85);
       color: var(--bg-color);
       border: none;
-      border-radius: 50%; /* 圓形按鈕 */
+      border-radius: 50%;
       width: 45px;
       height: 45px;
       cursor: pointer;
       display: flex;
-      flex-direction: column; /* 三條線垂直排列 */
-      justify-content: space-around; /* 線條均勻分布 */
+      flex-direction: column;
+      justify-content: space-around;
       align-items: center;
       padding: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-    .toc-toggle span { /* 漢堡選單的線條 */
+    .toc-toggle span {
       display: block;
       width: 20px;
       height: 2px;
       background-color: var(--bg-color);
       border-radius: 1px;
-      transition: all 0.3s ease; /* 動畫效果 */
+      transition: all 0.3s ease;
     }
-    /* 按鈕 active 狀態 (叉叉圖示) */
     .toc-toggle.active span:nth-child(1) {
       transform: translateY(8.5px) rotate(45deg);
     }
     .toc-toggle.active span:nth-child(2) {
-      opacity: 0; /* 中間線條隱藏 */
+      opacity: 0;
     }
     .toc-toggle.active span:nth-child(3) {
       transform: translateY(-8.5px) rotate(-45deg);
     }
 
-    /* 目錄選單 */
     .toc-menu {
       list-style: none;
       padding: 0;
       margin: 0;
       position: absolute;
-      top: 55px; /* 位於切換按鈕下方 */
+      top: 55px;
       right: 0;
-      background-color: rgba(38, 30, 71, 0.95); /* 深色背景，略透明 */
+      background-color: rgba(38, 30, 71, 0.95);
       border-radius: 8px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       width: 180px;
-      max-height: 0; /* 預設隱藏 */
+      max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease-out; /* 高度變動畫 */
+      transition: max-height 0.3s ease-out;
     }
-    .toc-menu.active { /* 選單展開狀態 */
-      max-height: 500px; /* 展開高度，可依內容調整 */
+    .toc-menu.active {
+      max-height: 500px;
       padding: 10px 0;
     }
     .toc-menu li a {
@@ -153,54 +145,51 @@
       color: var(--bg-color);
     }
 
-    /* 浮動預約按鈕 */
     .floating-btn {
-      position: fixed; /* 固定在視窗右下方 */
+      position: fixed;
       right: 24px;
       bottom: 24px;
       width: 70px;
       height: 70px;
-      background-color: #F7C242; /* 主黃色 */
-      color: #261E47; /* 深藍色文字 */
+      background-color: #F7C242;
+      color: #261E47;
       font-weight: bold;
       font-size: 1rem;
-      border-radius: 50%; /* 圓形 */
+      border-radius: 50%;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      z-index: 1000; /* 層級 */
+      z-index: 1000;
       text-decoration: none;
       transition: opacity 0.3s ease, transform 0.2s ease, background-color 0.3s ease;
       display: flex;
-      align-items: center; /* 垂直置中 */
-      justify-content: center; /* 水平置中 */
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      line-height: 1.25; /* 調整文字行高以容納兩行文字 */
-      padding: 5px; /* 內邊距 */
+      line-height: 1.25;
+      padding: 5px;
     }
     .floating-btn:hover {
-      background-color: #e0aa2e; /* 滑鼠懸停時的背景色 */
-      transform: scale(1.05); /* 滑鼠懸停時放大 */
+      background-color: #e0aa2e;
+      transform: scale(1.05);
     }
-    .floating-btn.hidden { /* 按鈕隱藏狀態 (例如滾動到頁尾時) */
+    .floating-btn.hidden {
       opacity: 0;
-      pointer-events: none; /* 不可點擊 */
+      pointer-events: none;
     }
 
-    /* Hero 區域 LOGO */
     .hero-logo {
-      width: 12vh; /* LOGO 寬度為視窗高度的 12% */
-      margin-bottom: 1rem; /* LOGO 下方間距 */
-      margin-top: 2rem; /* LOGO 上方間距 */
+      width: 12vh;
+      margin-bottom: 1rem;
+      margin-top: 2rem;
     }
 
-    /* Hero 區域文字內容 */
     .hero-text {
       position: relative;
       padding: 2rem;
       text-align: center;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); /* 文字陰影 */
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
     }
     .hero-text h1 {
-      font-family: 'Noto Serif TC', serif; /* 使用思源宋體 */
+      font-family: 'Noto Serif TC', serif;
       font-size: 4rem;
       color: var(--text-color-main);
       margin-top: 0;
@@ -212,7 +201,7 @@
       color: var(--text-color-secondary);
       margin-top: 0;
       margin-bottom: 1rem;
-      letter-spacing: 0.3em; /* 字間距 */
+      letter-spacing: 0.3em;
     }
     .hero-text h3 {
       font-size: 1.1rem;
@@ -229,190 +218,191 @@
       letter-spacing: 0.08em;
     }
 
-    /* 通用內容區塊 (Section) */
     .section {
       display: flex;
-      flex-wrap: wrap; /* 允許換行 */
+      flex-wrap: wrap;
       padding: 3rem 1rem;
-      align-items: center; /* 垂直居中對齊子元素 */
-      justify-content: center; /* 水平居中對齊子元素 */
-      gap: 2rem; /* 子元素間距 */
-      scroll-margin-top: 20px; /* 錨點連結時，頂部偏移量 (避免被固定導覽列遮擋) */
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      scroll-margin-top: 20px;
     }
-    .section:nth-child(even) { /* 偶數區塊，圖片與文字左右對調 */
+    .section:nth-child(even) {
       flex-direction: row-reverse;
     }
     .section img {
       width: 100%;
-      max-width: 400px; /* 圖片最大寬度 */
-      flex: 1 1 400px; /* Flexbox 彈性設定 */
+      max-width: 400px;
+      flex: 1 1 400px;
       border-radius: 8px;
-      loading: lazy; /* 圖片延遲載入 */
-      object-fit: cover; /* 圖片填滿容器並可能裁切 */
-      transition: opacity 0.3s ease; /* 透明度漸變 */
+      loading: lazy;
+      object-fit: cover;
+      transition: opacity 0.3s ease;
     }
-    .section img:not([src]) { /* 若圖片 src 為空 (例如尚未載入完成) */
-      opacity: 0; /* 保持透明 */
+    .section img:not([src]) {
+      opacity: 0;
     }
-    .section .text { /* 文字內容區塊 */
+    .section .text {
       max-width: 400px;
       flex: 1 1 400px;
     }
     .section > h3,
-    .section .text h3 { /* 區塊標題 */
+    .section .text h3 {
       color: var(--text-color-main);
       margin-bottom: 1rem;
       font-size: 1.8rem;
       text-align: center;
     }
+    /* 強調文字的通用 class (可選，用於取代 strong 標籤的 inline style) */
+    .text-highlight-strong {
+        color: var(--text-color-highlight);
+        font-size: 19px; /* 或根據需要調整 */
+        font-weight: bold; /* strong 預設就是 bold，但明確寫出更好 */
+    }
 
-    /* 特色介紹區塊 (Grid 佈局) */
+
     .features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 自動適應欄位數量 */
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
       padding: 2rem;
-      scroll-margin-top: 20px; /* 錨點偏移 */
+      scroll-margin-top: 20px;
     }
     .features-icon {
-      display: block; /* 設為區塊元素以使用 margin: auto 水平置中 */
+      display: block;
       height: 70px;
-      margin: 0 auto 1rem auto; /* 上0 右auto 下1rem 左auto */
-      object-fit: contain; /* 保持圖片原始長寬比並完整顯示 */
+      margin: 0 auto 1rem auto;
+      object-fit: contain;
       loading: lazy;
     }
-    .feature-box { /* 單個特色項目 */
+    .feature-box {
       border: 1px solid var(--text-color-main);
       padding: 1rem;
       border-radius: 10px;
-      background-color: rgba(255, 255, 255, 0.05); /* 半透明背景 */
+      background-color: rgba(255, 255, 255, 0.05);
     }
     .feature-box h4 {
       color: var(--text-color-main);
       text-align: center;
     }
 
-    /* FAQ 和 注意事項 區塊共用樣式 */
     .faq-section {
       padding: 2rem;
-      max-width: 800px; /* 最大寬度限制 */
-      margin: 0 auto 2rem auto; /* 水平置中並設定底部間距 */
-      background-color: rgba(0, 0, 0, 0.4); /* 半透明背景 */
+      max-width: 800px;
+      margin: 0 auto 2rem auto;
+      background-color: rgba(0, 0, 0, 0.4);
       border-radius: 10px;
-      scroll-margin-top: 20px; /* 錨點偏移 */
+      scroll-margin-top: 20px;
     }
 
-    /* FAQ 主標題 */
-    .faq-section .faq-main-title {
+    .faq-section .faq-main-title,
+    .notice-title { /* 合併相似標題樣式 */
       font-size: 1.8rem;
       text-align: center;
       color: var(--text-color-main);
-      cursor: pointer; /* 滑鼠指標為手型 */
+      cursor: pointer;
       margin-bottom: 1.5rem;
+      display: flex; /* 用於箭頭和文字對齊 */
+      align-items: center;
+      justify-content: center;
     }
-    .faq-section .faq-main-title .arrow { /* 箭頭圖示 */
+    .notice-title { /* notice-title 的特定調整 */
+        font-size: 1.5rem; /* notice title 字體稍小 */
+    }
+
+    .faq-section .faq-main-title .arrow,
+    .notice-title .arrow,
+    .faq-item h4 .arrow {
       display: inline-block;
-      margin-right: 0.3em;
-      transition: transform 0.3s ease; /* 旋轉動畫 */
+      margin-right: 0.3em; /* 箭頭與文字間距 */
+      margin-left: 0.3em; /* 箭頭與文字間距 (若箭頭在兩側)*/
+      transition: transform 0.3s ease;
     }
-    .faq-section .faq-main-title.open .arrow { /* 展開時箭頭向上 */
+    .faq-section .faq-main-title.open .arrow,
+    .notice-title.open .arrow,
+    .faq-item h4.open .arrow {
       transform: rotate(180deg);
     }
-
-    /* FAQ 問題列表容器 (預設隱藏) */
-    .faq-list-container {
-      display: none;
+     /* 確保箭頭在標題文字的兩側時，右邊的箭頭初始方向正確 */
+    .faq-main-title .arrow:last-child:not(.open),
+    .notice-title .arrow:last-child:not(.open) {
+        /* 如果需要初始向下，則不需要額外旋轉。若需要初始向上，則 transform: rotate(180deg); */
+    }
+    .faq-main-title.open .arrow:last-child,
+    .notice-title.open .arrow:last-child {
+        /* 展開時右邊箭頭若要向上旋轉 (與左邊箭頭方向一致) */
+        transform: rotate(180deg);
     }
 
-    /* FAQ 單個問答項目 */
+
+    .faq-list-container,
+    .notice-content {
+      display: none;
+    }
+     .notice-content { /* notice-content 的特定調整 */
+        margin-top: 1rem;
+    }
+
+
     .faq-item {
       margin-bottom: 1rem;
     }
-    .faq-item h4 { /* 問題標題 */
+    .faq-item h4 {
       cursor: pointer;
-      color:var(--text-color-highlight);/* 特殊橘色 */
+      color:var(--text-color-highlight);
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center
+      text-align: center;
+      font-size: 1.1rem; /* 調整 FAQ 問題標題大小 */
     }
-    .faq-item h4 .arrow { /* 問題標題旁的箭頭 */
-      display: inline-block;
-      margin-right: 0.3em;
-      transition: transform 0.3s ease;
-    }
-    .faq-item h4.open .arrow { /* 展開時箭頭向上 */
-      transform: rotate(180deg);
-    }
-    .faq-item p { /* 答案內容 (預設隱藏) */
+    .faq-item p {
       text-align: center;
       display: none;
       margin-top: 0.5rem;
       padding: 0 1em;
+      line-height: 1.6;
     }
 
-    /* 注意事項標題 */
-    .notice-title {
-      text-align: center;
-      font-size: 1.5rem;
-      color:var(--text-color-main);
-      cursor: pointer;
-    }
-    .notice-title .arrow {
-      display: inline-block;
-      margin-right: 0.3em;
-      transition: transform 0.3s ease;
-    }
-    .notice-title.open .arrow {
-      transform: rotate(180deg);
-    }
-    /* 注意事項內容 (預設隱藏) */
-    .notice-content {
-      display: none;
-      margin-top: 1rem;
-    }
-    /* 注意事項列表樣式 */
     .notice-content ol {
-      padding-left: 20px; /* 主列表縮排 */
+      padding-left: 20px;
     }
-    .notice-content ol ol { /* 子列表樣式 */
-      padding-left: 20px; /* 子列表相對於父列表的縮排 */
+    .notice-content ol ol {
+      padding-left: 20px;
     }
     .notice-content li {
-      margin-bottom: 1em; /* 列表項間距 */
-      line-height: 1.6;   /* 行高 */
+      margin-bottom: 1em;
+      line-height: 1.6;
     }
     .notice-content li:last-child {
-      margin-bottom: 0; /* 最後一項移除底部間距 */
+      margin-bottom: 0;
     }
     
     .notice-highlight {
       color: var(--text-color-highlight);
-      font-weight: 650;
+      font-weight: 650; /* 或 'bold' / 700 */
     }
 
-    /* 中間過場區塊 */
     .mid {
       text-align: center;
       padding: 2rem;
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);
       color: var(--text-color-secondary);
-      background: url('https://i.ibb.co/nN9PFfwn/BG-2.webp') center/cover no-repeat; /* 背景圖 */
+      background: url('https://i.ibb.co/nN9PFfwn/BG-2.webp') center/cover no-repeat;
       background-size: cover;
       background-position: center;
-      scroll-margin-top: 20px; /* 錨點偏移 */
+      scroll-margin-top: 20px;
     }
     .mid h3 {
-      color: var(--text-color-secondary); /* 確保此處文字顏色不受父元素影響 */
+      color: var(--text-color-secondary);
     }
 
-    /* 主辦單位資訊 */
     .organizer-info {
       text-align: center;
       padding: 3rem 1rem;
       color: var(--text-color-secondary);
       margin-bottom: 0;
-      scroll-margin-top: 20px; /* 錨點偏移 */
+      scroll-margin-top: 20px;
     }
     .organizer-info .organizer-label {
       font-size: 1.0rem;
@@ -427,36 +417,34 @@
       margin-bottom: 1.5rem;
       font-weight: bold;
     }
-    /* 社群媒體連結 */
     .social-links {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 1.5rem; /* 圖示間距 */
+      gap: 1.5rem;
     }
     .social-links a {
       display: inline-block;
       transition: transform 0.2s ease;
     }
     .social-links a:hover {
-      transform: scale(1.1); /* 滑鼠懸停放大圖示 */
+      transform: scale(1.1);
     }
-    .social-links img { /* 社群圖示大小 */
+    .social-links img {
       width: 32px;
       height: 32px;
-      object-fit: contain; /* 保持圖示比例 */
+      object-fit: contain;
     }
 
-    /* 頁尾 */
     footer {
       text-align: center;
       padding: 2rem;
       color: var(--text-color-secondary);
-      background: url('https://i.ibb.co/9k4M0HbC/BG-1.webp') center/cover no-repeat; /* 背景圖 */
+      background: url('https://i.ibb.co/9k4M0HbC/BG-1.webp') center/cover no-repeat;
       background-size: cover;
       background-position: center;
     }
-    .footer-btn { /* 頁尾預約按鈕 */
+    .footer-btn {
       display: inline-block;
       margin-top: 1rem;
       padding: 0.75rem 1.5rem;
@@ -474,22 +462,18 @@
       transform: scale(1.05);
     }
 
-    /* --- 響應式設計 (RWD) --- */
-
-    /* 平板橫向優化 (768px - 1034px) */
     @media screen and (min-device-width: 768px) and (max-device-width: 1034px) and (orientation: landscape) {
-      .floating-btn { /* 調整浮動按鈕位置，避免與瀏覽器 UI衝突 */
+      .floating-btn {
         bottom: 120px;
         right: 24px;
       }
     }
 
-    /* 手機版優化 (最大寬度 768px) */
     @media (max-width: 768px) {
       html {
-        font-size: calc(14px * var(--text-scale)); /* 縮小基本字體 */
+        font-size: calc(14px * var(--text-scale));
       }
-      .toc-toggle { /* 縮小目錄按鈕 */
+      .toc-toggle {
         width: 40px;
         height: 40px;
         padding: 8px;
@@ -498,7 +482,7 @@
         width: 18px;
         height: 2px;
       }
-      .toc-menu { /* 調整目錄選單 */
+      .toc-menu {
         top: 50px;
         width: 160px;
       }
@@ -506,61 +490,60 @@
         font-size: 0.85rem;
         padding: 8px 15px;
       }
-      .floating-btn { /* 調整浮動按鈕大小與位置 */
+      .floating-btn {
         width: 60px;
         height: 60px;
         font-size: 1rem;
-        bottom: 95px; /* 提高位置以避開手機底部操作欄 */
+        bottom: 95px;
         right: 15px;
       }
       .hero-text h1 { font-size: 3.2rem; }
       .hero-text h2 { font-size: 1rem; }
       footer h2 { font-size: 1.3rem; }
-      .section { /* 內容區塊改為垂直排列 */
-        flex-direction: column !important; /* 強制垂直排列 */
+      .section {
+        flex-direction: column !important;
         padding: 2rem 1rem;
       }
       .section img,
-      .section .text { /* 圖片與文字區塊佔滿寬度 */
+      .section .text {
         max-width: 100% !important;
-        flex: unset; /* 取消 flex 彈性設定 */
+        flex: unset;
       }
       .organizer-info .organizer-label { font-size: 0.9rem; }
       .organizer-info h3 { font-size: 1.4rem; }
-      .social-links img { width: 28px; height: 28px; } /* 縮小社群圖示 */
-      .faq-section .faq-main-title { font-size: 1.6rem; }
-      .notice-title { font-size: 1.3rem; }
+      .social-links img { width: 28px; height: 28px; }
+      .faq-section .faq-main-title,
+      .notice-title { font-size: 1.6rem; }
+      .notice-title { font-size: 1.3rem; } /* 保持 notice title 的特定大小 */
+      .faq-item h4 { font-size: 1rem; } /* 調整手機版 FAQ 問題標題大小 */
     }
 
-    /* 超小螢幕優化 (最大寬度 480px) */
     @media (max-width: 480px) {
       .floating-btn {
         width: 55px;
         height: 55px;
-        font-size: 1rem;
+        font-size: 1rem; /* 保持和 768px 一致或微調 */
         bottom: 100px;
         right: 10px;
       }
       .social-links img { width: 24px; height: 24px; }
-      .social-links { gap: 1rem; } /* 縮小社群圖示間距 */
-      .toc-nav { top: 10px; right: 10px; } /* 微調目錄導覽位置 */
+      .social-links { gap: 1rem; }
+      .toc-nav { top: 10px; right: 10px; }
+      .hero-text h1 { font-size: 2.8rem; } /* 超小螢幕再調整一下 */
     }
 
-    /* iPhone Safari 底部工具列優化 */
-    /* 針對特定 iPhone Safari 瀏覽器，進一步調整浮動按鈕位置 */
     @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
       .floating-btn {
-        bottom: 140px; /* 預留更多空間給 Safari 底部工具列 */
+        bottom: 140px;
       }
     }
 
-    /* 圖片載入時的佔位符動畫 (骨架屏效果) */
     .loading-placeholder {
       background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
       background-size: 200% 100%;
       animation: loading 1.5s infinite;
     }
-    @keyframes loading { /* 漸變背景移動動畫 */
+    @keyframes loading {
       0% { background-position: 200% 0; }
       100% { background-position: -200% 0; }
     }
@@ -590,7 +573,7 @@
 
   <!-- Hero 橫幅區塊 -->
   <section class="hero-text" id="hero">
-    <img src="https://i.ibb.co/0ptbMj5s/HT-logo.webp" alt="花月酒店LOGO" loading="eager" class="hero-logo" /> <!-- eager: 優先載入此圖片 -->
+    <img src="https://i.ibb.co/0ptbMj5s/HT-logo.webp" alt="花月酒店LOGO" loading="eager" class="hero-logo" />
     <h1>花月酒店謀殺案</h1>
     <h2>【期間限定，沉浸式實境遊戲】</h2>
     <p>
@@ -609,7 +592,7 @@
         花月，一間座落於七條通的日式酒店，來到這裡的客人除了來喝酒之外，更是來享受那一份不明說的曖昧。<br>
         然而，在這紙醉金迷之中，一道慘叫聲打破了這令人陶醉的氛圍——<br>
         花月酒店的媽媽桑，琳達，被人發現死在了花月的後巷！<br><br>
-        <strong style="color:var(--text-color-highlight);font-size: 19px;">兇手究竟會是誰？</strong>
+        <strong class="text-highlight-strong">兇手究竟會是誰？</strong>
       </p>
     </div>
   </section>
@@ -623,7 +606,7 @@
         「我記得她跟媽媽桑鬧得很不愉快……」<br>
         「兇手是他吧……畢竟發生了那種事……」<br>
         「她會有這個下場我一點都不意外。」<br><br>
-        <strong style="color:var(--text-color-highlight);font-size: 19px;"> 和同場演員一起痛快飆戲！</strong> <!--   為空格 -->
+        <strong class="text-highlight-strong"> 和同場演員一起痛快飆戲！</strong>
       </p>
     </div>
   </section>
@@ -679,12 +662,12 @@
       <h3>售票資訊</h3>
       <p>
         <strong>場次時間：</strong><br>
-        <b>&ensp;‧2025/6/27 (五)：</b><br>
-        &emsp;&emsp;19:00、20:45<br>
-        <b>&ensp;‧2025/6/28 (六)：</b><br>
-        &emsp;&emsp;13:00、14:45、16:30、19:15、21:00<br><br>
+        <strong> ‧2025/6/27 (五)：</strong><br> <!-- 使用 strong 替代 b -->
+          19:00、20:45<br>
+        <strong> ‧2025/6/28 (六)：</strong><br> <!-- 使用 strong 替代 b -->
+          13:00、14:45、16:30、19:15、21:00<br><br>
         <strong>遊戲費用：</strong><br>
-        單人票&emsp;&emsp;&ensp;700元<a href="#single" id="jumpToSingleFaq">&ensp;*將與其他玩家併組</a><br>
+        單人票   700元<a href="#single" id="jumpToSingleFaq" aria-label="跳轉至單人票常見問題"> *將與其他玩家併組</a><br>
         5人團體票 2,600元（未滿5人亦可遊玩）<br>
         6人團體票 3,000元
       </p>
@@ -693,67 +676,67 @@
 
   <!-- 常見問題 (FAQ) -->
   <section class="faq-section" id="mainFaqSection">
-    <h4 class="faq-main-title"><span class="arrow">▽</span> 常見問題   <span class="arrow">▽</span></h4>
-    <div class="faq-list-container"> <!-- 此容器預設隱藏，由JS控制顯示 -->
+    <h4 class="faq-main-title" role="button" aria-expanded="false" aria-controls="faqListContainerEl"><span class="arrow">▽</span> 常見問題 <span class="arrow">▽</span></h4>
+    <div class="faq-list-container" id="faqListContainerEl">
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 遊戲要怎麼玩呢？</h4>
+        <h4 role="button" aria-expanded="false"><span class="arrow">▽</span> Q: 遊戲要怎麼玩呢？</h4>
         <p> A: 玩家會於行前收到遊戲說明影片，並於活動當天報到時領取遊戲解謎包。透過觀察現場資訊以及與演員互動取得相應的線索，藉此推理出本次案件的真相。詳細遊戲規則可見行前說明影片及遊戲解謎包內的說明。</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 現場會提供WIFI嗎？</h4>
+        <h4 role="button" aria-expanded="false"><span class="arrow">▽</span> Q: 現場會提供WIFI嗎？</h4>
         <p> A: 現場會提供WIFI，遊戲玩家中至少需有一人的手機可上網。</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 是否會有肢體接觸？</h4>
+        <h4 role="button" aria-expanded="false"><span class="arrow">▽</span> Q: 是否會有肢體接觸？</h4>
         <p> A: 工作人員於活動中不會刻意觸碰玩家，玩家也請勿觸碰、傷害、攻擊工作人員，若造成工作人員不適或受傷，將立即終止遊戲，不予退還遊戲費用，並有予以求償之權利。</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 現場會提供餐點嗎？</h4>
+        <h4 role="button" aria-expanded="false"><span class="arrow">▽</span> Q: 現場會提供餐點嗎？</h4>
         <p> A: 遊戲會提供一人一杯飲品，於訂位時可選擇含酒精飲品或無酒精飲品，現場不開放攜帶外食參加遊戲，僅可攜帶瓶裝水。</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 可以帶小孩一起玩嗎？</h4>
+        <h4 role="button" aria-expanded="false"><span class="arrow">▽</span> Q: 可以帶小孩一起玩嗎？</h4>
         <p> A: 遊戲內容涉及成人議題，不開放12歲以下玩家一同參與遊戲。</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 遊戲當天要怎麼報到呢？</h4>
+        <h4 role="button" aria-expanded="false"><span class="arrow">▽</span> Q: 遊戲當天要怎麼報到呢？</h4>
         <p> A: 已於網路預訂成功的玩家，請於當天至遊戲現場報到處，提供訂位人姓名及電話，資料核對無誤後便可以準備進行遊戲囉！</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 進行遊戲需要下載APP嗎？</h4>
+        <h4 role="button" aria-expanded="false"><span class="arrow">▽</span> Q: 進行遊戲需要下載APP嗎？</h4>
         <p> A: 遊戲會需要使用LINE進行，遊戲玩家中最少需要有一人安裝LINE程式。</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 遊戲會有服裝可以更換嗎？</h4>
+        <h4 role="button" aria-expanded="false"><span class="arrow">▽</span> Q: 遊戲會有服裝可以更換嗎？</h4>
         <p> A: 遊戲無提供換裝服務，但玩家們可穿著復古風服裝（80年代旗袍、西裝、襯衫等）增加遊戲沉浸感喔！</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 105分鐘內無法完成遊戲怎麼辦？</h4>
+        <h4 role="button" aria-expanded="false"><span class="arrow">▽</span> Q: 105分鐘內無法完成遊戲怎麼辦？</h4>
         <p> A: 遊戲時長取決於玩家推理進度，若推理進度落後，將會由現場的工作人員或演員協助進行遊戲。</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 若同行夥伴看不太懂中文的話可以玩嗎？</h4>
+        <h4 role="button" aria-expanded="false"><span class="arrow">▽</span> Q: 若同行夥伴看不太懂中文的話可以玩嗎？</h4>
         <p> A: 團隊中至少須有一人熟悉中文閱讀與對話。</p>
       </div>
       <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 如果我們超過6個人，還可以同一組進行遊戲嗎？</h4>
+        <h4 role="button" aria-expanded="false"><span class="arrow">▽</span> Q: 如果我們超過6個人，還可以同一組進行遊戲嗎？</h4>
         <p> A: 因遊戲人數上限無法更動，建議可拆成兩組相互競賽也非常有趣唷！</p>
       </div>
        <div class="faq-item" id="single">
-        <h4><span class="arrow">▽</span> Q: 如果購買的是複數張單人票，會被拆組進行遊戲嗎？</h4>
+        <h4 role="button" aria-expanded="false"><span class="arrow">▽</span> Q: 如果購買的是複數張單人票，會被拆組進行遊戲嗎？</h4>
         <p> A: 單人票將與其他玩家併組進行遊戲。可於購買時填寫同行玩家（單人票）之預約姓名，將優先安排併組。若玩家希望能保證同組進行遊戲，建議直接購買團體票喔！</p>
       </div>
        <div class="faq-item">
-        <h4><span class="arrow">▽</span> Q: 如果購買的是5人組團體票，會併入單人票玩家進行遊戲嗎？</h4>
+        <h4 role="button" aria-expanded="false"><span class="arrow">▽</span> Q: 如果購買的是5人組團體票，會併入單人票玩家進行遊戲嗎？</h4>
         <p> A: 團體票玩家不會與他人併組喔！</p>
       </div>
     </div>
   </section>
 
   <!-- 遊戲注意事項 -->
-  <section class="faq-section" id="noticesSection"> <!-- 注意事項區塊也套用 faq-section 的部分樣式 -->
-    <h4 class="notice-title"><span class="arrow">▽</span> 遊戲注意事項 <span class="arrow">▽</span></h4>
-    <div class="notice-content"> <!-- 此容器預設隱藏，由JS控制顯示 -->
+  <section class="faq-section" id="noticesSection">
+    <h4 class="notice-title" role="button" aria-expanded="false" aria-controls="noticeContentEl"><span class="arrow">▽</span> 遊戲注意事項 <span class="arrow">▽</span></h4>
+    <div class="notice-content" id="noticeContentEl">
       <ol>
         <li>網頁上顯示的金額為遊戲費用全額，除早鳥優惠以外，不適用任何優惠。請於訂場後<span class="notice-highlight">24小時內</span>支付，逾期則場次自動釋出不另行通知。</li>
         <li>
@@ -792,7 +775,7 @@
   <footer>
     <div style="text-shadow: 2px 2px 8px rgba(0, 0, 0, 1);">
       <h2>乾杯！<br>敲響花月酒店的大門！</h2>
-      <h3>いらっしゃいませ！</h3> <!-- 日文：歡迎光臨 -->
+      <h3>いらっしゃいませ！</h3>
     </div>
     <a href="https://lihi.cc/z2qAk/googlesite" target="_blank" class="footer-btn">立即預約</a>
   </footer>
@@ -817,207 +800,215 @@
   </section>
 
   <script>
-    // 圖片延遲載入功能
-    // 雖然 HTML img 標籤已使用 loading="lazy" (瀏覽器原生懶載入)，
-    // 此處 JS 主要是用於控制圖片載入後的顯示效果 (例如透明度變化)
-    function lazyLoadImages() {
-      const images = document.querySelectorAll('img[loading="lazy"]'); // 選取所有設定為懶載入的圖片
+    document.addEventListener('DOMContentLoaded', () => {
+      // 圖片延遲載入功能
+      function lazyLoadImages() {
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        if ('IntersectionObserver' in window) {
+          const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                img.style.opacity = '1';
+                observer.unobserve(img);
+              }
+            });
+          });
+          images.forEach(img => imageObserver.observe(img));
+        } else {
+          images.forEach(img => img.style.opacity = '1');
+        }
+      }
+      lazyLoadImages();
 
-      if ('IntersectionObserver' in window) { // 檢查瀏覽器是否支援 IntersectionObserver API
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) { // 當圖片進入可視區域
-              const img = entry.target;
-              // 如果有使用 data-src (目前HTML未使用，但保留此邏輯供未來擴展)
-              // if (img.dataset.src) {
-              //   img.src = img.dataset.src;
-              // }
-              img.style.opacity = '1'; // 將圖片設為完全可見 (配合 CSS 的 opacity: 0 初始設定)
-              observer.unobserve(img); // 停止觀察此圖片，避免重複觸發
+      // --- 目錄導覽列 (TOC)互動邏輯 ---
+      const tocNav = document.getElementById('tocNav');
+      const tocToggle = document.querySelector('.toc-toggle');
+      const tocMenu = document.querySelector('.toc-menu');
+      const tocLinks = document.querySelectorAll('.toc-menu li a');
+
+      if (tocToggle && tocMenu) {
+        tocToggle.addEventListener('click', () => {
+          const isExpanded = tocMenu.classList.toggle('active');
+          tocToggle.classList.toggle('active');
+          tocToggle.setAttribute('aria-expanded', isExpanded);
+        });
+
+        tocLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            if (tocMenu.classList.contains('active')) {
+              tocMenu.classList.remove('active');
+              tocToggle.classList.remove('active');
+              tocToggle.setAttribute('aria-expanded', 'false');
             }
           });
         });
 
-        images.forEach(img => {
-          imageObserver.observe(img); // 開始觀察每個懶載入圖片
-        });
-      } else {
-        // 如果瀏覽器不支援 IntersectionObserver，則直接顯示所有圖片
-        // (現代瀏覽器通常都支援，此為備用方案)
-        images.forEach(img => {
-          // if (img.dataset.src) {
-          //   img.src = img.dataset.src;
-          // }
-          img.style.opacity = '1';
-        });
-      }
-    }
-
-    // --- 目錄導覽列 (TOC)互動邏輯 ---
-    const tocNav = document.getElementById('tocNav'); // 目錄導覽列容器
-    const tocToggle = document.querySelector('.toc-toggle'); // 目錄切換按鈕
-    const tocMenu = document.querySelector('.toc-menu'); // 目錄選單
-    const tocLinks = document.querySelectorAll('.toc-menu li a'); // 目錄中的所有連結
-
-    if (tocToggle && tocMenu) {
-      // 點擊切換按鈕時，展開或收合目錄選單
-      tocToggle.addEventListener('click', () => {
-        tocMenu.classList.toggle('active'); // 切換選單的 active class (控制顯示/隱藏)
-        tocToggle.classList.toggle('active'); // 切換按鈕的 active class (控制圖示變化)
-        const isExpanded = tocMenu.classList.contains('active');
-        tocToggle.setAttribute('aria-expanded', isExpanded); // 設定 WAI-ARIA 屬性，提升無障礙性
-      });
-
-      // 點擊目錄中的連結後，自動收合選單 (適用於單頁錨點連結)
-      tocLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          if (tocMenu.classList.contains('active')) {
+        document.addEventListener('click', (event) => {
+          if (tocNav && !tocNav.contains(event.target) && tocMenu.classList.contains('active')) {
             tocMenu.classList.remove('active');
             tocToggle.classList.remove('active');
             tocToggle.setAttribute('aria-expanded', 'false');
           }
         });
-      });
+      }
 
-      // 點擊目錄選單以外的區域時，自動收合選單
-      document.addEventListener('click', (event) => {
-        // 檢查點擊事件的目標是否在 tocNav 元素內部，且選單是展開的
-        if (tocNav && !tocNav.contains(event.target) && tocMenu.classList.contains('active')) {
-            tocMenu.classList.remove('active');
-            tocToggle.classList.remove('active');
-            tocToggle.setAttribute('aria-expanded', 'false');
-        }
-      });
-    }
-
-    // --- 手風琴 (Accordion) 效果邏輯 ---
-    /**
-     * 設定手風琴效果
-     * @param {string} sectionId - 手風琴區塊的 ID
-     * @param {string} titleSelector - 主標題的 CSS 選擇器 (用於觸發展開/收合列表)
-     * @param {string} contentContainerSelector - 內容列表容器的 CSS 選擇器
-     * @param {string} [itemSelector] - (可選) 列表內單個項目的 CSS 選擇器 (用於二級手風琴)
-     * @param {string} [itemTitleSelector] - (可選) 列表內單個項目標題的 CSS 選擇器 (用於觸發展開/收合項目內容)
-     * @param {string} [itemContentSelector] - (可選) 列表內單個項目內容的 CSS 選擇器
-     */
-    function setupAccordion(sectionId, titleSelector, contentContainerSelector, itemSelector, itemTitleSelector, itemContentSelector) {
+      // --- 手風琴 (Accordion) 效果邏輯 ---
+      function setupAccordion(sectionId, titleSelector, contentContainerSelector, itemSelector, itemTitleSelector, itemContentSelector) {
         const section = document.getElementById(sectionId);
-        if (!section) return; // 如果找不到區塊，則不執行
+        if (!section) return;
 
         const mainTitle = section.querySelector(titleSelector);
         const listContainer = section.querySelector(contentContainerSelector);
 
-        // 設定主標題點擊事件 (展開/收合整個列表)
         if (mainTitle && listContainer) {
-            mainTitle.addEventListener('click', () => {
-                const isOpen = listContainer.style.display === 'block';
-                listContainer.style.display = isOpen ? 'none' : 'block'; // 切換顯示狀態
-                mainTitle.classList.toggle('open', !isOpen); // 切換 .open class (用於箭頭圖示等樣式)
-            });
-        }
-
-        // 如果提供了項目選擇器，則設定二級手風琴 (展開/收合列表中的個別項目)
-        if (itemSelector && itemTitleSelector && itemContentSelector) {
-            section.querySelectorAll(itemSelector + ' ' + itemTitleSelector).forEach((questionTitle) => {
-                questionTitle.addEventListener('click', () => {
-                    const answer = questionTitle.nextElementSibling; // 假設內容元素緊跟在標題之後
-                    if (answer && answer.matches(itemContentSelector)) { // 確保是正確的內容元素
-                        const isOpen = answer.style.display === 'block';
-                        answer.style.display = isOpen ? 'none' : 'block';
-                        questionTitle.classList.toggle('open', !isOpen);
-                    }
-                });
-            });
-        }
-    }
-
-    // 初始化常見問題 (FAQ) 的手風琴效果 (二級手風琴)
-    setupAccordion(
-      'mainFaqSection',          // 區塊 ID
-      '.faq-main-title',         // 主標題選擇器 (點擊此標題展開 FAQ 列表)
-      '.faq-list-container',     // FAQ 列表容器選擇器
-      '.faq-item',               // 單個 FAQ 項目選擇器
-      'h4',                      // FAQ 問題標題選擇器 (點擊此標題展開答案)
-      'p'                        // FAQ 答案內容選擇器
-    );
-
-    // 初始化注意事項的手風琴效果 (一級手風琴)
-    // 注意：此處 setupAccordion 的後三個參數未使用，因為注意事項是單層展開
-    const noticeSection = document.getElementById('noticesSection');
-    if (noticeSection) {
-        const noticeTitle = noticeSection.querySelector('.notice-title'); // 注意事項標題
-        const noticeContent = noticeSection.querySelector('.notice-content'); // 注意事項內容容器
-        if (noticeTitle && noticeContent) {
-            noticeTitle.addEventListener('click', () => {
-                const isOpen = noticeContent.style.display === 'block';
-                noticeContent.style.display = isOpen ? 'none' : 'block';
-                noticeTitle.classList.toggle('open', !isOpen);
-            });
-        }
-    }
-
-    // --- 浮動預約按鈕顯示/隱藏控制 ---
-    const bookingBtn = document.getElementById('bookingBtn'); // 浮動按鈕
-    const pageFooter = document.querySelector('footer'); // 頁尾元素
-
-    if (bookingBtn && pageFooter) {
-      // 使用 IntersectionObserver 監測頁尾是否進入可視區域
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) { // 如果頁尾可見 (表示已滾動到頁面底部)
-            bookingBtn.classList.add('hidden'); // 隱藏浮動按鈕
-          } else { // 如果頁尾不可見
-            bookingBtn.classList.remove('hidden'); // 顯示浮動按鈕
+          mainTitle.addEventListener('click', () => {
+            const isOpen = listContainer.style.display === 'block';
+            listContainer.style.display = isOpen ? 'none' : 'block';
+            mainTitle.classList.toggle('open', !isOpen);
+            mainTitle.setAttribute('aria-expanded', !isOpen); // 更新 aria-expanded
+          });
+          // 確保初始 aria-expanded 狀態正確
+          mainTitle.setAttribute('aria-expanded', listContainer.style.display === 'block');
+          // 給主內容容器一個ID，如果它還沒有的話，用於 aria-controls
+          if (listContainer.id && mainTitle.getAttribute('aria-controls') !== listContainer.id) {
+            // mainTitle.setAttribute('aria-controls', listContainer.id); // 已在HTML中手動添加
           }
-        });
-      }, {
-        threshold: 0.05 // 當頁尾元素 5% 進入或離開可視區域時觸發回調
-      });
-      observer.observe(pageFooter); // 開始觀察頁尾元素
-    }
+        }
 
-    // --- DOMContentLoaded 事件監聽 ---
-    // 確保在 HTML 文件完全載入並解析完成後才執行 JavaScript 程式碼
-    document.addEventListener('DOMContentLoaded', () => {
-      lazyLoadImages(); // 初始化圖片懶載入功能
-      // 其他需要在 DOM 載入後執行的初始化程式碼可以放在這裡
+        if (itemSelector && itemTitleSelector && itemContentSelector) {
+          section.querySelectorAll(itemSelector).forEach((item) => {
+            const questionTitle = item.querySelector(itemTitleSelector);
+            const answer = item.querySelector(itemContentSelector); // 直接找 item 下的 p
+            
+            if(questionTitle && answer){
+              // 給 answer 一個唯一的 ID (如果還沒有)，用於 aria-controls
+              if (!answer.id) {
+                answer.id = `faq_answer_${Math.random().toString(36).substr(2, 9)}`;
+              }
+              questionTitle.setAttribute('aria-controls', answer.id);
+
+              questionTitle.addEventListener('click', () => {
+                const isOpen = answer.style.display === 'block';
+                answer.style.display = isOpen ? 'none' : 'block';
+                questionTitle.classList.toggle('open', !isOpen);
+                questionTitle.setAttribute('aria-expanded', !isOpen); // 更新 aria-expanded
+              });
+              // 確保初始 aria-expanded 狀態正確
+              questionTitle.setAttribute('aria-expanded', answer.style.display === 'block');
+            }
+          });
+        }
+      }
+
+      setupAccordion(
+        'mainFaqSection',
+        '.faq-main-title',
+        '.faq-list-container',
+        '.faq-item',
+        'h4',
+        'p'
+      );
+
+      const noticeSection = document.getElementById('noticesSection');
+      if (noticeSection) {
+        const noticeTitle = noticeSection.querySelector('.notice-title');
+        const noticeContent = noticeSection.querySelector('.notice-content');
+        if (noticeTitle && noticeContent) {
+          noticeTitle.addEventListener('click', () => {
+            const isOpen = noticeContent.style.display === 'block';
+            noticeContent.style.display = isOpen ? 'none' : 'block';
+            noticeTitle.classList.toggle('open', !isOpen);
+            noticeTitle.setAttribute('aria-expanded', !isOpen); // 更新 aria-expanded
+          });
+          // 確保初始 aria-expanded 狀態正確
+          noticeTitle.setAttribute('aria-expanded', noticeContent.style.display === 'block');
+           // 給主內容容器一個ID，如果它還沒有的話，用於 aria-controls
+          if (noticeContent.id && noticeTitle.getAttribute('aria-controls') !== noticeContent.id) {
+           // noticeTitle.setAttribute('aria-controls', noticeContent.id); // 已在HTML中手動添加
+          }
+        }
+      }
+
+      // --- 浮動預約按鈕顯示/隱藏控制 ---
+      const bookingBtn = document.getElementById('bookingBtn');
+      const pageFooter = document.querySelector('footer');
+
+      if (bookingBtn && pageFooter) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            bookingBtn.classList.toggle('hidden', entry.isIntersecting);
+          });
+        }, { threshold: 0.05 });
+        observer.observe(pageFooter);
+      }
+
+      // --- Hash Change 處理錨點跳轉到隱藏內容 ---
+      function handleHashChange() {
+        const hash = window.location.hash;
+        if (hash) {
+          const targetElement = document.getElementById(hash.substring(1));
+          if (targetElement) {
+            // 檢查目標是否在 FAQ 列表中
+            const faqListContainer = targetElement.closest('.faq-list-container');
+            if (faqListContainer) {
+              const mainFaqSection = faqListContainer.closest('.faq-section');
+              const faqMainTitle = mainFaqSection ? mainFaqSection.querySelector('.faq-main-title') : null;
+
+              if (faqMainTitle && faqListContainer.style.display !== 'block') {
+                faqListContainer.style.display = 'block';
+                faqMainTitle.classList.add('open');
+                faqMainTitle.setAttribute('aria-expanded', 'true');
+              }
+
+              if (targetElement.classList.contains('faq-item')) {
+                const targetFaqItemTitle = targetElement.querySelector('h4');
+                const targetFaqItemContent = targetElement.querySelector('p');
+                if (targetFaqItemTitle && targetFaqItemContent && targetFaqItemContent.style.display !== 'block') {
+                  targetFaqItemContent.style.display = 'block';
+                  targetFaqItemTitle.classList.add('open');
+                  targetFaqItemTitle.setAttribute('aria-expanded', 'true');
+                }
+              }
+            }
+            // 檢查目標是否在 Notice 內容中 (如果未來有需要跳轉到 notice 內部)
+            // else if (targetElement.closest('.notice-content')) { ... }
+
+            // 確保元素可見後再滾動
+            // requestAnimationFrame 確保 DOM 更新後執行滾動
+            requestAnimationFrame(() => {
+                // 檢查元素是否真的在可視範圍內，若否則滾動
+                const rect = targetElement.getBoundingClientRect();
+                if (rect.top < 0 || rect.bottom > (window.innerHeight || document.documentElement.clientHeight) || rect.left < 0 || rect.right > (window.innerWidth || document.documentElement.clientWidth)) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+                } else if (rect.top > 200 ) { // 如果元素在可視範圍但偏底部，也稍微往上滾動一點使其更居中
+                     targetElement.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+                }
+            });
+          }
+        }
+      }
+
+      window.addEventListener('hashchange', handleHashChange);
+      // 頁面載入時也檢查一次 hash
+      if (window.location.hash) {
+        handleHashChange();
+      }
+
+      // 特定連結點擊時也觸發 handleHashChange (處理頁內跳轉到 FAQ 的情況)
+      const jumpToSingleFaqLink = document.getElementById('jumpToSingleFaq');
+      if (jumpToSingleFaqLink) {
+        jumpToSingleFaqLink.addEventListener('click', function(event) {
+          // 阻止預設跳轉一下，確保我們的 handleHashChange 能在 DOM 更新後正確滾動
+          // event.preventDefault(); // 移除，讓瀏覽器先改變hash
+          // 手動改變 hash 會觸發 hashchange 事件
+          // window.location.hash = this.hash;
+          // 或者直接調用 handleHashChange，因為此時 hash 可能還沒更新
+           setTimeout(handleHashChange, 0); // 延遲一點執行，確保 hash 已更新
+        });
+      }
+
     });
   </script>
-    <script>
-  window.addEventListener('hashchange', function() {
-  const hash = window.location.hash; // 例如 "#single"
-  if (hash) {
-    const targetElement = document.getElementById(hash.substring(1)); // 移除 '#' 號
-    if (targetElement && targetElement.closest('.faq-list-container')) {
-      const faqListContainer = targetElement.closest('.faq-list-container');
-      const mainFaqSection = faqListContainer.closest('.faq-section');
-      const faqMainTitle = mainFaqSection ? mainFaqSection.querySelector('.faq-main-title') : null;
-
-      // 展開主 FAQ 列表
-      if (faqListContainer.style.display !== 'block' && faqMainTitle) {
-        faqListContainer.style.display = 'block';
-        faqMainTitle.classList.add('open');
-      }
-
-      // 展開目標 FAQ 項目
-      if (targetElement.classList.contains('faq-item')) {
-        const targetFaqItemTitle = targetElement.querySelector('h4');
-        const targetFaqItemContent = targetElement.querySelector('p');
-        if (targetFaqItemTitle && targetFaqItemContent && targetFaqItemContent.style.display !== 'block') {
-          targetFaqItemContent.style.display = 'block';
-          targetFaqItemTitle.classList.add('open');
-        }
-        // 確保元素可見後再滾動一次 (有時瀏覽器初始跳轉不完美)
-        setTimeout(() => {
-          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100); // 短暫延遲
-      }
-    }
-  }
-});
-
-// 頁面載入時也檢查一次 hash，處理直接帶 hash 訪問的情況
-window.dispatchEvent(new Event('hashchange'));
-    </script>
 </body>
 </html>
